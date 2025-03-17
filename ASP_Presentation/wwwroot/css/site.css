@@ -615,6 +615,39 @@ input[type="checkbox"] {
             grid-area: email;
         }
 
+.member-list {
+    height: 100%;
+}
+
+    .member-list table tr {
+        grid-template-areas: "checkbox info location phone date status actions";
+        grid-template-columns: auto 3fr 3fr 2fr 2fr 2fr 50px;
+    }
+
+    .member-list .member-info {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas: "image name" "image email";
+        column-gap: 1rem;
+        align-items: center;
+    }
+
+
+        .member-list .member-info .member-image {
+            grid-area: image;
+            width: 48px;
+            height: 48px;
+        }
+
+        .member-list .member-info .member-name {
+            grid-area: name;
+            font-weight: var(--font-bold);
+        }
+
+        .member-list .member-info .member-email {
+            grid-area: email;
+        }
+
 
 .nav-links {
     margin: 2rem 0;
@@ -730,6 +763,15 @@ input[type="checkbox"] {
             align-items: center;
             margin-bottom: 2rem;
         }
+ /* Sections*/
+
+#addMemberModal .modal-content {
+    width: 550px;
+}
+
+#editClientModal .modal-content {
+    width: 550px;
+}
 
 #team-members {
 }
@@ -743,14 +785,6 @@ input[type="checkbox"] {
     height: 100%;
     padding: 1rem;
 }
-
-#addClientModal .modal-content {
-    width: 550px;
-}
-
-#editClientModal .modal-content {
-}
-
 
 
 

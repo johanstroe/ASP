@@ -1,17 +1,37 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Business.Interface;
+using Domain.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace ASP_Presentation.Controllers
+namespace ASP_Presentation.Controllers;
+
+public class AuthController(IAuthService authService) : Controller
 {
-    public class AuthController : Controller
+    private readonly IAuthService _authService = authService;
+
+    [HttpGet]
+    public IActionResult Login()
     {
-        public IActionResult Register()
+        ViewBag.ErrorMessage = null!;
+        
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Login(MemberLogin form, string returnUrl = "~/")
+    {
+        ViewBag.ErrorMessage = null!;
+        
+        if (ModelState.IsValid)
         {
-            return View();
+            var result = await _authService.LoginAsync(form);
+            if (result)
+                return Redirect(returnUrl);
         }
-        public IActionResult Login()
-        {
-            return LocalRedirect("/projects");
-            //return View();
-        }
+
+        TempData["Error"] = "Test";
+
+        ViewBag.ErrorMessage = "Incorrect email or password";
+        return View(form);
+
     }
 }

@@ -1,21 +1,34 @@
 ﻿
 using Business.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ASP_Presentation.Controllers;
 
-[Route("admin")]
+[Authorize]
+//[Route("admin")]
 public class AdminController : Controller
 
-    
 {
+
+    public IActionResult Index ()
+    {
+        return View();
+    }
+
+    public IActionResult Projects()
+    {
+        return View();
+    }
+   
     [Route("members")]
+    
     public IActionResult Members()
     {
         return View();
     }
 
-    [Route("clients")]
+    //[Route("clients")]
     public IActionResult Clients()
     {
         return View();

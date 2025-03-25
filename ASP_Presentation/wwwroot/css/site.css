@@ -47,6 +47,20 @@
     --navlink-background-color: transparent;
     --navlink-background-hover-color: var(--blue-accent-10);
     --navlink-background-active-color: pink;
+
+    --form-text-color: var(--white-100);
+    --form-border-color: var(--white-100);
+    --form-background-color: var(--white-100);
+    
+    --form-label-color: var(--dark-200);
+    
+    --form-input-placeholder-color: var(--gray-600);
+    --form-input-background-color: var(--white-100);
+    --form-input-border-color: var(--gray-400);
+    --form-input-border-focus-color: var(--blue-accent-10);
+    
+
+
     --table-header-background-color: transparent;
     --table-header-text-color: var(--gray-800);
     --table-tbody-tr-background-hover-color: var(--blue-accent-10);
@@ -55,7 +69,7 @@
     --text-color: var(--dark-400);
     --text-muted-color: var(--gray-800);
     --text--extra-muted-color: var(--gray-700);
-    --background-color:var(--white-200);
+    --background-color: var(--white-200);
     --headline-color: var(--dark-200);
     --border-color: var(--gray-500);
     --border-focus-color: var(--blue-accent);
@@ -74,6 +88,10 @@
     --btn-gray-border-hover-color: var(--gray-100);
     --btn-gray-background-hover-color: var(--gray-100);
     --surface-color: var(--white-100);
+}
+
+*, *::before, *::after {
+    box-sizing:border-box;
 }
 
 /* [data-theme="dark"] {
@@ -297,7 +315,7 @@ label {
 
 portal > .main {
     grid-area: main;
-    padding: 2rem;
+    padding: 1rem 2rem;
 }
 
 .maincontainer {
@@ -323,6 +341,7 @@ h1 {
 h2 {
     font-size: 32px;
     font-weight: var(--font-bold);
+    padding: 1rem 2rem;
 }
 
 h3 {
@@ -505,6 +524,10 @@ form {
         margin-bottom: 1.2rem;
     }
 
+    label {
+        font-size:0.9em;
+    }
+
     form .field-group {
         position: relative;
     }
@@ -559,7 +582,12 @@ form {
         gap: 0.5rem;
     }
 
-
+#login {
+    width:600px;
+    background-color: var(--form-background-color);
+    padding:4rem;
+    
+}
 
 
 input[type="checkbox"] {
@@ -789,3 +817,9 @@ input[type="checkbox"] {
 
 
 /* views/pages*/
+
+.page-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}

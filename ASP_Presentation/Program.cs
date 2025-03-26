@@ -11,6 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("AlphaDb")));
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IMemberService, MemberService>();
+
+
+
 builder.Services.AddIdentity<MemberEntity, IdentityRole>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -38,8 +42,8 @@ var app = builder.Build();
 app.UseHsts();
 app.UseHttpsRedirection();
 app.UseRouting();
-app.UseAuthorization();
 app.UseAuthentication();
+app.UseAuthorization();
 app.MapStaticAssets();
 app.MapControllerRoute(
     name: "default",

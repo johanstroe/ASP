@@ -15,4 +15,6 @@ public class Member
 
     public string? Phone { get; set; }
 
+    public string? Location { get; set; }
+
 }

@@ -1,6 +1,7 @@
 ﻿
 
 using Business.Interface;
+using Data.Contexts;
 using Data.Entities;
 using Domain.Models;
 using Microsoft.AspNetCore.Identity;
@@ -8,12 +9,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
-public class MemberService(UserManager<MemberEntity> userManager) : IMemberService
+public class MemberService(UserManager<MemberEntity> userManager, DataContext db) : IMemberService
 {
     private readonly UserManager<MemberEntity> _userManager = userManager;
-
+    
     public async Task<IEnumerable<Member>> GetAllMembers()
     {
+
         var list = await _userManager.Users.ToListAsync();
         var members = list.Select(x => new Member
         {
@@ -27,4 +29,13 @@ public class MemberService(UserManager<MemberEntity> userManager) : IMemberServi
         });
         return members;
     }
+
+    public async Task CreateUser(MemberEntity member)
+    {
+        db.Users.Add(member);
+        db.SaveChanges();
+        return;
+    }
+
+
 }

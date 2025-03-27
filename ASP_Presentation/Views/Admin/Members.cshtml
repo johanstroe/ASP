@@ -6,14 +6,15 @@
 }
 
 
-<partial name="Partials/Sections/_AddMemberForm" />
+<partial name="Partials/Sections/_AddMemberForm" model="new AddMemberForm()" />
 
 <section id="team-members">
-<header>
-    <h2>Team Members</h2>
+    <header>
+        <h2>Team Members</h2>
         <button type="button" data-modal="true" data-target="#addMemberModal" class="btn btn-add btn-blue">Add Member</button>
-</header>
+    </header>
     <div class="surface">
+        
         <partial name="Partials/Sections/_MemberList" />
     </div>
 </section>

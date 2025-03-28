@@ -11,7 +11,7 @@ public class StatusService(IStatusRepository statusRepository)
     {
         var result = await _statusRepository.GetAllAsync();
         return result.Succeeded
-            ? new StatusResult { Succeeded = true, StatusCode = result.StatusCode, Result = result.Result } 
+            ? new StatusResult { Succeeded = true, StatusCode = result  } : new StatusResult {
     }
 }
 

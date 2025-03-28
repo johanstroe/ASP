@@ -13,4 +13,6 @@ public class MemberEntity : IdentityUser
     public string? JobTitle { get; set; }
 
    public virtual MemberAddressEntity? Address { get; set; }
+
+    public virtual ICollection<ProjectEntity> Projects { get; set; } = [];
 }

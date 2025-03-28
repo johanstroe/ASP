@@ -10,7 +10,7 @@ public interface IMemberRepository : IBaseRepository<MemberEntity, Member>
 {
 
 }
-public class MemberRepository(DataContext context) : BaseRepository<MemberEntity, Member>(context), IMemberRepository
+public class MemberRepository(DataContext context) : IBaseRepository<MemberEntity, Member>(context), IMemberRepository
 {
 
 }

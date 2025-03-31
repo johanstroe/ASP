@@ -2,6 +2,7 @@
 
 using Data.Contexts;
 using Data.Models;
+using Domain.Extentions;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -13,9 +14,9 @@ public interface IBaseRepository<TEntity, TModel> where TEntity : class
     Task<RepositoryResult<bool>> AddAsync(TEntity entity);
     Task<RepositoryResult<bool>> DeleteAsync(TEntity entity);
     Task<RepositoryResult<bool>> ExistsAsync(Expression<Func<TEntity, bool>> findBy);
-    Task<RepositoryResult<IEnumerable<TEntity>>> GetAllAsync(bool orderByDescending = false, Expression<Func<TEntity, object>>? sortBy = null, Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes);
+    Task<RepositoryResult<IEnumerable<TModel>>> GetAllAsync(bool orderByDescending = false, Expression<Func<TEntity, object>>? sortBy = null, Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes);
     Task<RepositoryResult<IEnumerable<TSelect>>> GetAllAsync<TSelect>(Expression<Func<TEntity, TSelect>> selector, bool orderByDescending = false, Expression<Func<TEntity, object>>? sortBy = null, Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes);
-    Task<RepositoryResult<TEntity>> GetAsync(Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes);
+    Task<RepositoryResult<TModel>> GetAsync(Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes);
     Task<RepositoryResult<bool>> UpdateAsync(TEntity entity);
 }
 
@@ -50,7 +51,7 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
     }
 
 
-    public virtual async Task<RepositoryResult<IEnumerable<TEntity>>> GetAllAsync(bool orderByDescending = false, Expression<Func<TEntity, object>>? sortBy = null, Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes)
+    public virtual async Task<RepositoryResult<IEnumerable<TModel>>> GetAllAsync(bool orderByDescending = false, Expression<Func<TEntity, object>>? sortBy = null, Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes)
     {
         IQueryable<TEntity> query = _table;
 
@@ -67,7 +68,8 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
            : query.OrderBy(sortBy);
 
         var entities = await query.ToListAsync();
-        return new RepositoryResult<IEnumerable<TEntity>> { Succeeded = true, StatusCode = 200, Result = entities };
+        var result = entities.Select(entity => entity.MapTo<TModel>());
+        return new RepositoryResult<IEnumerable<TModel>> { Succeeded = true, StatusCode = 200, Result = result };
     }
 
 
@@ -94,7 +96,7 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
         return new RepositoryResult<IEnumerable<TSelect>> { Succeeded = true, StatusCode = 200, Result = entities };
     }
 
-    public virtual async Task<RepositoryResult<TEntity>> GetAsync(Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes)
+    public virtual async Task<RepositoryResult<TModel>> GetAsync(Expression<Func<TEntity, bool>>? where = null, params Expression<Func<TEntity, object>>[] includes)
     {
 
         IQueryable<TEntity> query = _table;
@@ -104,9 +106,11 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
                 query = query.Include(include);
 
         var entity = await query.FirstOrDefaultAsync(where!);
-        return entity == null
-            ? new RepositoryResult<TEntity> { Succeeded = false, StatusCode = 404, Error = "Entity not found" }
-            : new RepositoryResult<TEntity> { Succeeded = true, StatusCode = 200, Result = entity };
+        if (entity == null)
+            return new RepositoryResult<TModel> { Succeeded = false, StatusCode = 404, Error = "Entity not found" };
+
+        var result = entity.MapTo<TModel>();
+        return new RepositoryResult<TModel> { Succeeded = true, StatusCode = 200, Result = result };
     }
 
 

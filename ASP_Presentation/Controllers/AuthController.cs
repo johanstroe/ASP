@@ -1,4 +1,7 @@
-﻿using Business.Interface;
+﻿using ASP_Presentation.ViewModels;
+using Business.Services;
+using Domain.Dtos;
+using Domain.Extentions;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,65 +11,57 @@ public class AuthController(IAuthService authService) : Controller
 {
     private readonly IAuthService _authService = authService;
 
-    
-    public IActionResult Login(string returnUrl = "~/")
-    {
-        ViewBag.ErrorMessage = "";
-        ViewBag.ReturnUrl = returnUrl;
 
-        return View();
-    }
-
-    //[HttpPost]
-    //public async Task<IActionResult> Login(MemberLogin form, string returnUrl = "~/")
-    //{
-    //    ViewBag.ErrorMessage = "";
-
-    //    if(ModelState.IsValid)
-    //    {
-    //      var result =  await _authService.LoginAsync(form);
-    //        if (result)
-    //            return LocalRedirect(returnUrl);
-    //    }
-
-    //    ViewBag.ErrorMessage = "Incorrect email or password.";
-    //    return View(form);
-
-    //}
-
-     //Genererad av chatgpt 4o, omskriven kod för användning av json istället för tidigare redirecten som krockade med javascriptet. 
-    [HttpPost]
-    public async Task<IActionResult> Login(MemberLogin form, string returnUrl = "~/")
-    {
-        if (ModelState.IsValid && await _authService.LoginAsync(form))
-            return Json(new { success = true, redirectUrl = Url.Content(returnUrl) });
-
-        Response.StatusCode = 400;
-        return Json(new { success = false, errors = new { Email = new[] { "Incorrect email or password." } } });
-    }
 
     public IActionResult SignUp()
     {
-        ViewBag.ErrorMessage = "";
+        return View();
+    }
 
+    public async Task <IActionResult> SignUp(SignUpViewModel model)
+    {
+        ViewBag.ErrorMessage = null;
+
+        if (!ModelState.IsValid)
+            return View(model);
+
+        var signUpForm = model.MapTo<SignUpForm>();
+
+        var result = await _authService.SignUpAsync(signUpForm);
+        if (result.Succeeded)
+        {
+            return RedirectToAction("SignIn", "Auth");
+        }
+        ViewBag.ErrorMessage = result.Error;
         return View();
     }
 
 
-    [HttpPost]
-    public async Task<IActionResult> SignUp(MemberSignUp form)
+
+    public IActionResult SignIn(string returnUrl = "~/")
     {
+        ViewBag.ReturnUrl = returnUrl;
+        return View();
+    }
 
-        if (ModelState.IsValid)
+    [HttpPost]
+    public async Task <IActionResult> SignIn(SignInViewModel model, string returnUrl = "~/")
+    {
+        ViewBag.ErrorMessage = null;
+        ViewBag.ReturnUrl = returnUrl;
+
+        if (!ModelState.IsValid)
+            return View(model);
+
+        var signInForm = model.MapTo<SignInForm>();
+        var result = await _authService.SignInAsync(signInForm);
+        
+        if (result.Succeeded)
         {
-            var result = await _authService.SignUpAsync(form);
-            if (result)
-                return LocalRedirect("~/");
+            return LocalRedirect(returnUrl);
         }
-
-        ViewBag.ErrorMessage = "";
-        return View(form);
-
+        ViewBag.ErrorMessage = result.Error;
+        return View();
     }
 
 

@@ -1,6 +1,7 @@
 ﻿
 using Business.Interface;
 using Business.Model;
+using Business.Services;
 using Data.Contexts;
 using Data.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -35,7 +36,7 @@ public class AdminController : Controller
     
     public async Task <IActionResult> Members()
     {
-        var members = await _memberService.GetAllMembers();
+        var members = await _memberService.GetMembersAsync();
         return View(members);
     }
 

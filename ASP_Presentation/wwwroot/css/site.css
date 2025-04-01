@@ -299,7 +299,7 @@ label {
     grid-area: top;
     border-bottom: 1px solid var(--border-color);
     padding: 1rem 2rem;
-    display: grid;
+    display: flex;
     grid-template-columns: 1fr 1fr auto;
     align-items: center;
     justify-content:flex-end;
@@ -475,6 +475,7 @@ btn-gray {
 .btn-logout {
     display:flex;
     align-items:flex-end;
+    width:12rem;
 }
 
 .btn-logout::before {
@@ -610,7 +611,7 @@ form-footer {
 
 #login {
     width: 600px;
-    background-color: var(--form-background-color);
+    background-color: var(--white-100);
     padding: 4rem;
     text-align: center;
     border-radius:10px;

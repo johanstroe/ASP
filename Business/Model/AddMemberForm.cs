@@ -11,10 +11,15 @@ public class AddMemberForm
     public IFormFile? MemberImage { get; set; }
 
 
-    [Display(Name = "Member Name", Prompt = "Enter member name")]
+    [Display(Name = "First Name", Prompt = "Enter first name")]
     [DataType(DataType.Text)]
     [Required(ErrorMessage = "Required")]
-    public string MemberName { get; set; } = null!;
+    public string FirstName { get; set; } = null!;
+
+    [Display(Name = "Last Name", Prompt = "Enter last name")]
+    [DataType(DataType.Text)]
+    [Required(ErrorMessage = "Required")]
+    public string LastName { get; set; } = null!;
 
     [Display(Name = "Email", Prompt = "Enter email address")]
     [DataType(DataType.EmailAddress)]

@@ -39,11 +39,11 @@ builder.Services.AddIdentity<MemberEntity, IdentityRole>(options =>
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
-    options.LoginPath = "/auth/login";
+    options.LoginPath = "/auth/signin";
     options.AccessDeniedPath = "/auth/denied";
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
-    options.Cookie.Expiration = TimeSpan.FromHours(1);
+    options.ExpireTimeSpan = TimeSpan.FromHours(1);
     options.SlidingExpiration = true;
     
 });

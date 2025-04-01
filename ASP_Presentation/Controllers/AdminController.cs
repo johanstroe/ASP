@@ -4,6 +4,7 @@ using Business.Model;
 using Business.Services;
 using Data.Contexts;
 using Data.Entities;
+using Domain.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,7 +38,7 @@ public class AdminController : Controller
     public async Task <IActionResult> Members()
     {
         var members = await _memberService.GetMembersAsync();
-        return View(members);
+        return View(members.Result);
     }
 
     [Route("clients")]
@@ -92,7 +93,7 @@ public class AdminController : Controller
 
     [HttpPost]
 
-    public IActionResult AddMember([FromForm]AddMemberForm form)
+    public async Task <IActionResult> AddMember([FromForm] AddMemberForm form)
     {
         if (!ModelState.IsValid)
         {
@@ -106,17 +107,19 @@ public class AdminController : Controller
             return BadRequest(new { success = false, errors });
         }
 
-        //  Send data to clientService
+        //  Send data to memberService
 
-        var member = new MemberEntity();
-        member.FirstName = form.MemberName;
-        member.Email = form.Email;
-        member.LastName = form.MemberName;
+        var member = new SignUpForm
+        { 
+        FirstName = form.FirstName,
+        LastName = form.LastName,
+        Email = form.Email,
 
-        _memberService.CreateUser(member);
-        return Ok(new { success = true, redirectUrl = "/members" });
+        };
 
-
+       await _memberService.CreateMemberAsync(member);
+        
+        return Ok(new { success = true, redirectUrl = "~/" });
     }
 
     [HttpPost]

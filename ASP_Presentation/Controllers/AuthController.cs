@@ -1,5 +1,6 @@
-﻿using ASP_Presentation.ViewModels;
-using Business.Services;
+﻿
+using Business.Interface;
+using Business.Model;
 using Domain.Dtos;
 using Domain.Extentions;
 using Domain.Models;
@@ -11,14 +12,14 @@ public class AuthController(IAuthService authService) : Controller
 {
     private readonly IAuthService _authService = authService;
 
-
-
+    [HttpGet]
     public IActionResult SignUp()
     {
         return View();
     }
 
-    public async Task <IActionResult> SignUp(SignUpViewModel model)
+    [HttpPost]
+    public async Task <IActionResult> SignUp(MemberSignUp model)
     {
         ViewBag.ErrorMessage = null;
 
@@ -45,7 +46,7 @@ public class AuthController(IAuthService authService) : Controller
     }
 
     [HttpPost]
-    public async Task <IActionResult> SignIn(SignInViewModel model, string returnUrl = "~/")
+    public async Task <IActionResult> SignIn(MemberLogin model, string returnUrl = "~/")
     {
         ViewBag.ErrorMessage = null;
         ViewBag.ReturnUrl = returnUrl;
@@ -65,9 +66,9 @@ public class AuthController(IAuthService authService) : Controller
     }
 
 
-    public async Task <IActionResult> Logout()
+    public async Task<IActionResult> LogOut()
     {
-        await _authService.LogoutAsync();
+        await _authService.SignOutAsync();
         return LocalRedirect("~/");
     }
 }

@@ -1,12 +1,12 @@
 ﻿using Business.Dtos;
+using Business.Interface;
 using Business.Model;
-using Business.Services;
 using Data.Entities;
 using Domain.Dtos;
 using Domain.Models;
 using Microsoft.AspNetCore.Identity;
 
-namespace Business.Interface;
+namespace Business.Services;
 
 
 
@@ -35,10 +35,10 @@ public class AuthService(IMemberService memberService, SignInManager<MemberEntit
 
         return result.Succeeded
           ? new AuthResult { Succeeded = true, StatusCode = 201 }
-          : new AuthResult { Succeeded = false, StatusCode = result.StatusCode, Error = "result.Error" };
+          : new AuthResult { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error };
     }
 
-    public async Task<AuthResult> SignOutAsync(SignUpForm formData)
+    public async Task<AuthResult> SignOutAsync()
     {
         await _signInManager.SignOutAsync();
         return new AuthResult { Succeeded = true, StatusCode = 201 };

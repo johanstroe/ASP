@@ -162,6 +162,14 @@ section > header {
     box-shadow: 0 4px 4px 3px rgba(160, 160, 160, 0.1);
 }
 
+.surface-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px, 1fr));
+    gap: 1.5rem;
+    background-color: var(--background-color);
+    align-items: center;
+}
+
 
 
 #signUpWithGoogle {
@@ -326,6 +334,17 @@ portal > .main {
     padding: 2rem;
 }
 
+.card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 
 
 
@@ -400,9 +419,10 @@ logo-text {
     justify-content: center;
     gap: 0.5rem;
     color: var(--gray-200);
-    0 0 10px rgba(45, 153, 255, 0.3);
+    box-shadow:0 0 10px rgba(45, 153, 255, 0.3);
     background-color: var(--blue-accent-10);
-    border:none;
+    border:1.5px;
+    margin-right:3rem;
 }
 
 #signup-form-button {
@@ -542,7 +562,7 @@ form {
         position: relative;
         display: grid;
         gap: 0.2rem;
-        margin-bottom: 1.2rem;
+        margin-bottom: 1.8rem;
     }
 
 label {

@@ -20,21 +20,11 @@
             @await Html.PartialAsync("Partials/Components/_NavLinks")
         </div>
         <div class="top">
+            <img class="#settingsicon" src="/Images/Settings.svg"/>
+            <img class="#divider" src="/Images/Divider.svg" />
             <a class="btn btn-logout" asp-controller="Auth" asp-action="Logout">Log out</a>
         </div>
         <div class="main">
-
-            <div class="card">
-            <div class="card1"></div>
-                <div class="card1"></div>
-                <div class="card1"></div>
-                <div class="card1"></div>
-                <div class="card1"></div>
-                <div class="card1"></div>
-                <div class="card1"></div>
-                <div class="card1"></div>
-
-            </div>
 
             @RenderBody()
         </div>

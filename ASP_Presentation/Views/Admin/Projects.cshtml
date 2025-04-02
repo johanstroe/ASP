@@ -1,17 +1,51 @@
 ﻿@{
-    ViewData["Title"] = "Team Members";
+    ViewData["Title"] = "Projects view";
 }
 
 
 @* <partial name="Partials/Sections/_AddMemberForm" /> *@
 
-<section id="team-members">
+<section id="projects">
     <header>
         <h2>Projects</h2>
-        <button type="button" data-modal="true" data-target="#addMemberModal" class="btn btn-add btn-blue">Add Member</button>
+        <button type="button" data-modal="true" data-target="#addMemberModal" class="btn btn-add">Projects</button>
     </header>
-    <div class="surface">
+    <div class="surface surface-cards">
+        
+        <div class="card">
+            <partial name="Partials/Sections/_ProjectList" />
+        </div>
+
+        <div class="card">
+            <partial name="Partials/Sections/_ProjectList" />
+        </div>
+
+        <div class="card">
+            <partial name="Partials/Sections/_ProjectList" />
+        </div>
+
+        <div class="card">
         <partial name="Partials/Sections/_ProjectList" />
+        </div>
+
+        <div class="card">
+            <partial name="Partials/Sections/_ProjectList" />
+        </div>
+
+        <div class="card">
+            <partial name="Partials/Sections/_ProjectList" />
+        </div>
+
+        <div class="card">
+            <partial name="Partials/Sections/_ProjectList" />
+        </div>
+
+        <div class="card">
+            <partial name="Partials/Sections/_ProjectList" />
+        </div>
+
+        
+
     </div>
 </section>
 

@@ -1,7 +1,6 @@
 ﻿
 using Business.Interface;
 using Business.Model;
-using Business.Services;
 using Data.Contexts;
 using Data.Entities;
 using Domain.Dtos;
@@ -141,5 +140,27 @@ public class AdminController : Controller
 
 
         return Ok(new { success = true });
+    }
+
+    [HttpPost]
+    public IActionResult AddProject(AddProjectForm form)
+    {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState
+                .Where(x => x.Value?.Errors.Count > 0)
+                .ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value?.Errors.Select(x => x.ErrorMessage).ToArray()
+                );
+
+            return BadRequest(new { success = false, errors });
+        }
+
+        //  Send data to clientService
+
+        return Ok(new { success = true, redirectUrl = "/projects" });
+
+
     }
 }

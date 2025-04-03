@@ -4,9 +4,9 @@ using Business.Services;
 using Data.Contexts;
 using Data.Entities;
 using Data.Repositories;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,6 +41,8 @@ builder.Services.ConfigureApplicationCookie(options =>
 {
     options.LoginPath = "/auth/signin";
     options.AccessDeniedPath = "/auth/denied";
+    options.Cookie.SameSite = SameSiteMode.None;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
     options.ExpireTimeSpan = TimeSpan.FromHours(1);
@@ -49,15 +51,26 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 builder.Services.AddControllersWithViews();
-
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+})
+    .AddCookie()
+    .AddGoogle(options =>
+    {
+        options.ClientId = builder.Configuration["Authentication:Google:ClientId"]!;
+        options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"]!; ;
+    });
 
 
 var app = builder.Build();
 app.UseHsts();
 app.UseHttpsRedirection();
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapStaticAssets();
 app.MapControllerRoute(
     name: "default",

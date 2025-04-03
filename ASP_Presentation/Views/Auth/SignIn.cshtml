@@ -12,6 +12,7 @@
         
         
         <h1> @ViewData["Title"] </h1>
+        
 
         <div class="form-group">
             <label asp-for="Email"></label>
@@ -38,6 +39,12 @@
         <span>Don't have an account?</span>
     <a asp-controller="Auth" asp-action="SignUp">Sign up</a>
     </div>
+    </form>
+
+    <form method="post" action="/Auth/ExternalSignIn"  class="external-login-form">
+        <input type="hidden" name="provider" value="Google" />
+        <input type="hidden" name="returnUrl" value="@ViewBag?.ReturnUrl" />
+        <button type="submit" class="btn-external btn-google">Sign in with Google</button>
     </form>
 
 

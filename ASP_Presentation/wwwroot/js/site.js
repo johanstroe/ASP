@@ -16,10 +16,10 @@
 
     // Handle submit forms
 
-    const forms = document.querySelectorAll('form')
+    const forms = document.querySelectorAll('form)')
     forms.forEach(form => {
         form.addEventListener('submit', async (e) => {
-            //e.preventDefault()
+            e.preventDefault()
 
             console.log("Submit triggered!");
             clearErrorMessages(form)
@@ -27,19 +27,20 @@
             const formData = new FormData(form)
 
             try {
+                console.log("IGNORERAD FORM");
                 const res = await fetch(form.action, {
                     method: 'post',
                     body: formData
                 })
 
-                //if (res.ok) {
-                //    const modal = form.closest('.modal')
-                //    if (modal)
-                //        modal.style.display = 'none';
+                if (res.ok) {
+                    const modal = form.closest('.modal')
+                    if (modal)
+                        modal.style.display = 'none';
 
-                //        window.location.reload()
+                        window.location.reload()
 
-                //}
+                }
 
                 if (res.ok) {
                     const data = await res.json();
@@ -77,7 +78,7 @@
 
     // close modal
 
-    const closeButtons = document.querySelectorAll('[data-close="true"')
+    const closeButtons = document.querySelectorAll('[data-close="true"]')
     closeButtons.forEach(button => {
         button.addEventListener('click', () => {
             const modal = button.closest('.modal')

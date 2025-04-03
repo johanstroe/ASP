@@ -1,4 +1,5 @@
-﻿using Business.Model;
+﻿using Business.Interface;
+using Business.Model;
 using Data.Entities;
 using Data.Repositories;
 using Domain.Dtos;
@@ -9,13 +10,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace Business.Services;
-
-public interface IMemberService
-{
-    Task<MemberResult> AddMemberToRole(string memberId, string roleName);
-    Task<MemberResult> CreateMemberAsync(SignUpForm formData, string roleName = "User");
-    Task<MemberResult> GetMembersAsync();
-}
 
 public class MemberService(IMemberRepository memberRepository, UserManager<MemberEntity> userManager, RoleManager<IdentityRole> roleManager) : IMemberService
 {

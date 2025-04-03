@@ -1,4 +1,14 @@
-﻿<!DOCTYPE html>
+﻿
+@{
+    var provider = User?.FindFirstValue(ClaimTypes.AuthenticationMethod);
+    if (string.IsNullOrEmpty(provider))
+        provider = "Local Identity";
+
+    var email = User?.FindFirstValue(ClaimTypes.Email);
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -20,9 +30,14 @@
             @await Html.PartialAsync("Partials/Components/_NavLinks")
         </div>
         <div class="top">
+            <div class="account-info">
+                <div class="provider">@provider</div>
+                <div class="email">@email</div>
+            
             <img class="#settingsicon" src="/Images/Settings.svg"/>
             <img class="#divider" src="/Images/Divider.svg" />
             <a class="btn btn-logout" asp-controller="Auth" asp-action="Logout">Log out</a>
+            </div>
         </div>
         <div class="main">
 
@@ -30,8 +45,6 @@
         </div>
     </div>
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

@@ -1,9 +1,11 @@
-﻿@{
+﻿@model IEnumerable<Projects>
+
+@{
     ViewData["Title"] = "Projects view";
 }
 
 
-<partial name="Partials/Sections/_AddProjectForm" />
+<partial name="Partials/Sections/_AddProjectForm" model="new AddProjectForm()" />
 
 
 
@@ -14,37 +16,12 @@
     </header>
     <div class="surface surface-cards">
         
-        <div class="card">
-            <partial name="Partials/Sections/_ProjectList" />
-        </div>
-
-        <div class="card">
-            <partial name="Partials/Sections/_ProjectList" />
-        </div>
-
-        <div class="card">
-            <partial name="Partials/Sections/_ProjectList" />
-        </div>
-
-        <div class="card">
-        <partial name="Partials/Sections/_ProjectList" />
-        </div>
-
-        <div class="card">
-            <partial name="Partials/Sections/_ProjectList" />
-        </div>
-
-        <div class="card">
-            <partial name="Partials/Sections/_ProjectList" />
-        </div>
-
-        <div class="card">
-            <partial name="Partials/Sections/_ProjectList" />
-        </div>
-
-        <div class="card">
-            <partial name="Partials/Sections/_ProjectList" />
-        </div>
+        @foreach (var project in Model)
+        {
+            <div class="card">
+              <partial name="Partials/Sections/_ProjectList" model="project" />
+              </div>
+        }
 
         
 

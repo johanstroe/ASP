@@ -14,7 +14,7 @@
 
             <div class="image-previewer circle ">
                 <img src="" class="image-preview" />
-                <input asp-for="Image" accept="image/*" class="hide" />
+                <input asp-for="ProjectImage" accept="image/*" class="hide" />
             </div>
 
             <div class="form-group">
@@ -27,9 +27,26 @@
 
 
             <div class="form-group">
+                <label asp-for="ClientId"></label>
+                <div class="field-group">
+                    <input asp-for="ClientId" />
+                    <span asp-validation-for="ClientId"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MemberId"></label>
+                <div class="field-group">
+                    <input asp-for="MemberId" />
+                    <span asp-validation-for="MemberId"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
                 <label asp-for="Description"></label>
                 <div class="field-group">
-                    <input asp-for="Description" />
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
                     <span asp-validation-for="Description"></span>
                 </div>
             </div>
@@ -58,38 +75,24 @@
                 </div>
             </div>
 
-
             <div class="form-group">
-                <label asp-for="ClientId">Client</label>
+                <label asp-for="StatusId"></label>
                 <div class="field-group">
-                    <select asp-for="ClientId" class="form-control">
-                        <option disabled selected value="">Select a client</option>
-                    </select>
-                    <span asp-validation-for="ClientId"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="MemberId">Member</label>
-                <div class="field-group">
-                    <select asp-for="MemberId" class="form-control">
-                        <option disabled selected value="">Select a member</option>
-                        <!-- Fyll med dina medlemmar -->
-                    </select>
-                    <span asp-validation-for="MemberId"></span>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="StatusId">Status</label>
-                <div class="field-group">
-                    <select asp-for="StatusId" class="form-control">
-                        <option disabled selected value="">Select status</option>
-                        <!-- Fyll med dina statusar -->
-                    </select>
+                    <input asp-for="StatusId" />
                     <span asp-validation-for="StatusId"></span>
                 </div>
             </div>
+
+             @* <div class="form-group">   *@
+             @*   <label asp-for="StatusId">Status</label>   *@
+             @*      <div class="field-group">   *@
+             @*          <select asp-for="StatusId">   *@
+             @*               <option disabled selected value="">Select status</option>    *@
+                        
+             @*         </select>   *@
+             @*       <span asp-validation-for="StatusId"></span>  *@
+             @*    </div>   *@
+             @* </div>   *@
 
             
 

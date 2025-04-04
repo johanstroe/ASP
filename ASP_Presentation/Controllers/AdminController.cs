@@ -1,11 +1,13 @@
 ﻿
 using Business.Interface;
 using Business.Model;
+using Business.Services;
 using Data.Contexts;
 using Data.Entities;
 using Domain.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ASP_Presentation.Controllers;
 
@@ -16,10 +18,14 @@ public class AdminController : Controller
 {
 
     private readonly IMemberService _memberService;
+    private readonly IProjectService _projectService;
+    private readonly IStatusService _statusService;
 
-    public AdminController(IMemberService memberService)
+    public AdminController(IMemberService memberService, IProjectService projectService, IStatusService statusService)
     {
         _memberService = memberService;
+        _projectService = projectService;
+        _statusService = statusService;
     }
 
     public IActionResult Index()
@@ -27,9 +33,12 @@ public class AdminController : Controller
         return View();
     }
 
-    public IActionResult Projects()
+    [Route("projects")]
+    public async Task <IActionResult> Projects()
     {
-        return View();
+        var projects = await _projectService.GetProjectsAsync();
+        
+        return View(projects.Result);
     }
    
     [Route("members")]
@@ -40,10 +49,10 @@ public class AdminController : Controller
         return View(members.Result);
     }
 
-    [Route("clients")]
+    [HttpGet("")]
     public IActionResult Clients()
     {
-        return View();
+        return View("clients");
     }
 
     [HttpPost]
@@ -63,9 +72,9 @@ public class AdminController : Controller
         }
 
         //  Send data to clientService
-        
-            return Ok(new { success = true, redirectUrl = "/members" });
-       
+
+        return Ok(new { success = true, redirectUrl = "/members" });
+
 
     }
 
@@ -89,6 +98,7 @@ public class AdminController : Controller
 
         return Ok(new { success = true });
     }
+
 
     [HttpPost]
 
@@ -118,7 +128,7 @@ public class AdminController : Controller
 
        await _memberService.CreateMemberAsync(member);
         
-        return Ok(new { success = true, redirectUrl = "~/" });
+        return Ok(new { success = true, redirectUrl = "/members" });
     }
 
     [HttpPost]
@@ -143,7 +153,7 @@ public class AdminController : Controller
     }
 
     [HttpPost]
-    public IActionResult AddProject(AddProjectForm form)
+    public async Task <IActionResult> AddProject([FromForm]AddProjectForm form)
     {
         if (!ModelState.IsValid)
         {
@@ -157,10 +167,24 @@ public class AdminController : Controller
             return BadRequest(new { success = false, errors });
         }
 
+        //var projects = new AddProjectForm
+        //{
+        //    ProjectName = form.ProjectName,
+        //    ClientId = form.ClientName,
+        //    Description = form.Description,
+        //    StartDate = form.StartDate,
+        //    EndDate = form.EndDate,
+        //    Budget = form.Budget
+            
+        //};
+
+        var result = await _projectService.CreateProjectAsync(form);
+
         //  Send data to clientService
 
         return Ok(new { success = true, redirectUrl = "/projects" });
-
-
+        
     }
+
+
 }

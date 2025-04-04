@@ -1,5 +1,5 @@
 ﻿using Business.Model;
-using Data.Repositories;
+using Data.Interface;
 using Domain.Extentions;
 using Domain.Models;
 

@@ -19,16 +19,16 @@
                     <tr>
                         <td>
                             <div class="project-info">
-                                <img class="project-image" src="@(string.IsNullOrWhiteSpace(project.Image) ? "/images/Projecticon" : project.Image)" />
+                                <img class="project-image" src="@(string.IsNullOrWhiteSpace(project.Image) ? "/Images/Projecticon.svg" : project.Image)" />
                                 <div class="project-name">@project.ProjectName</div>
                                 <div class="project-desc">@project.Description</div>
                             </div>
                         </td>
 
-                        @* <td>@project.Client?.Name</td> *@
-                        @* <td>@project.Status?.Name</td> *@
-                        @* <td>@project.StartDate.ToShortDateString()</td> *@
-                        @* <td>@project.EndDate?.ToShortDateString()</td> *@
+                         <td>@project.Client?.Name</td> 
+                         <td>@project.Status?.Name</td> 
+                         <td>@project.StartDate.ToShortDateString()</td> 
+                         <td>@project.EndDate?.ToShortDateString()</td> 
 
                         <td>
                             <i class="fa-regular fa-ellipsis" data-modal="true" data-target="#editProjectModal"></i>

@@ -41,7 +41,7 @@ public abstract class BaseRepository<TEntity, TModel> : IBaseRepository<TEntity,
         {
             _table.Add(entity);
             await _context.SaveChangesAsync();
-            return new RepositoryResult<bool> { Succeeded = false, StatusCode = 201 };
+            return new RepositoryResult<bool> { Succeeded = true, StatusCode = 201 };
         }
         catch (Exception ex)
         {

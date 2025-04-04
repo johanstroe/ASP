@@ -16,7 +16,7 @@
 
     // Handle submit forms
 
-    const forms = document.querySelectorAll('form)')
+    const forms = document.querySelectorAll('form')
     forms.forEach(form => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
@@ -27,26 +27,25 @@
             const formData = new FormData(form)
 
             try {
-                console.log("IGNORERAD FORM");
+                console.log("Submit asdawd!");
                 const res = await fetch(form.action, {
                     method: 'post',
                     body: formData
                 })
-
+                console.log(res.formData);
                 if (res.ok) {
+                    const data = await res.json();
+                    
+                    console.log("Response från servern:", data);
+
                     const modal = form.closest('.modal')
                     if (modal)
                         modal.style.display = 'none';
 
-                        window.location.reload()
-
-                }
-
-                if (res.ok) {
-                    const data = await res.json();
-                    console.log("Response från servern:", data); 
                     if (data.success && data.redirectUrl) {
-                        window.location.href = data.redirectUrl;
+                        window.location.href = data.redirectUrl; // ✅ redirect sker korrekt
+                    } else {
+                        window.location.reload(); // fallback
                     }
                 }
 

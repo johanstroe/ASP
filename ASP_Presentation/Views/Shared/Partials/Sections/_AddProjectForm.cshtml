@@ -7,14 +7,14 @@
 
         <div class="modal-header">
             <h3>Add New Project</h3>
-            <button type="button" class="btn-close" data-close="true"></button>
+            <button type="button" class="btn-close" data-type="modal" data-target="#add-project-modal" data-close="true"></button>
         </div>
 
-        <form novalidate method="post" asp-action="AddProject" asp-controller="Admin" enctype="multipart/form-data">
+        <form class="ajaxForm" novalidate method="post" asp-action="AddProject" asp-controller="Admin" enctype="multipart/form-data">
 
             <div class="image-previewer circle ">
                 <img src="" class="image-preview" />
-                <input asp-for="ProjectImage" accept="image/*" class="hide" />
+                <input asp-for="ProjectImage" type="file" accept="image/*" class="hide" />
             </div>
 
             <div class="form-group">

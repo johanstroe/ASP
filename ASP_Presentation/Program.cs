@@ -23,8 +23,7 @@ builder.Services.AddScoped<IMemberRepository, MemberRepository>();
 builder.Services.AddScoped<IClientService,ClientService>();
 builder.Services.AddScoped<IProjectService, ProjectService>();
 builder.Services.AddScoped<IStatusService, StatusService>();
-builder.Services.AddScoped<IMemberService, MemberService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
+
 
 builder.Services.AddIdentity<MemberEntity, IdentityRole>(options =>
 {

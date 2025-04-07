@@ -16,26 +16,28 @@
 
     // Handle submit forms
 
-    const forms = document.querySelectorAll('form')
+    const forms = document.querySelectorAll('form.ajaxForm')
     forms.forEach(form => {
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
 
-            console.log("Submit triggered!");
             clearErrorMessages(form)
 
             const formData = new FormData(form)
 
             try {
-                console.log("Submit asdawd!");
+
+                //const queryString = new URLSearchParams(new FormData(form)).toString();
+                //window.location.href = `${form.action}?${queryString}`;
+
                 const res = await fetch(form.action, {
                     method: 'post',
                     body: formData
                 })
                 console.log(res.formData);
+
                 if (res.ok) {
                     const data = await res.json();
-                    
                     console.log("Response från servern:", data);
 
                     const modal = form.closest('.modal')
@@ -43,11 +45,15 @@
                         modal.style.display = 'none';
 
                     if (data.success && data.redirectUrl) {
-                        window.location.href = data.redirectUrl; // ✅ redirect sker korrekt
-                    } else {
-                        window.location.reload(); // fallback
+                        window.location.href = data.redirectUrl;
                     }
+                    else {
+                        window.location.reload()
+                    }
+
                 }
+      
+
 
                 else if (res.status === 400) {
                     const data = await res.json()

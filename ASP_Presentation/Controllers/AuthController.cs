@@ -68,7 +68,7 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
             return LocalRedirect(returnUrl);
         }
         ViewBag.ErrorMessage = result.Error;
-        return View();
+        return View(model);
     }
 
     #endregion

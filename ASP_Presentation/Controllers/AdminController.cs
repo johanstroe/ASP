@@ -1,4 +1,6 @@
 ﻿
+
+
 using Business.Interface;
 using Business.Model;
 using Business.Services;
@@ -36,9 +38,9 @@ public class AdminController : Controller
     [Route("projects")]
     public async Task <IActionResult> Projects()
     {
-        var projects = await _projectService.GetProjectsAsync();
+        var response = await _projectService.GetProjectsAsync();
         
-        return View(projects.Result);
+        return View(response.Result);
     }
    
     [Route("members")]
@@ -167,18 +169,9 @@ public class AdminController : Controller
             return BadRequest(new { success = false, errors });
         }
 
-        //var projects = new AddProjectForm
-        //{
-        //    ProjectName = form.ProjectName,
-        //    ClientId = form.ClientName,
-        //    Description = form.Description,
-        //    StartDate = form.StartDate,
-        //    EndDate = form.EndDate,
-        //    Budget = form.Budget
-            
-        //};
 
         var result = await _projectService.CreateProjectAsync(form);
+        
 
         //  Send data to clientService
 

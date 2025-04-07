@@ -17,8 +17,10 @@ public class AuthService(IMemberService memberService, SignInManager<MemberEntit
 
     public async Task<AuthResult> SignInAsync(SignInForm formData)
     {
+       
         if (formData == null)
-            return new AuthResult { Succeeded = false, StatusCode = 400, Error = "Not all required fields are supplied" };
+           return new AuthResult { Succeeded = false, StatusCode = 400, Error = "Not all required fields are supplied" };
+
 
         var result = await _signInManager.PasswordSignInAsync(formData.Email, formData.Password, formData.IsPersistent, false);
         return result.Succeeded

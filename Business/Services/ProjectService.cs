@@ -18,8 +18,13 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
     public async Task<ProjectResult> CreateProjectAsync(AddProjectForm formData)
     {
+        formData.MemberId = "85f20754-0b98-4aaf-82f1-b6ddc2f00c16";
+        formData.ClientId = "1";
+
         if (formData == null)
             return new ProjectResult { Succeeded = false, StatusCode = 400, Error = "Not all required fields are supplied" };
+
+      
 
         var projectEntity = formData.MapTo<ProjectEntity>();
         var statusResult = await _statusService.GetStatusByIdAsync(1);
@@ -33,8 +38,9 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
         return result.Succeeded
             ? new ProjectResult { Succeeded = true, StatusCode = 201 }
-            : new ProjectResult { Succeeded = false, StatusCode = result.StatusCode, Error = "result.Error" };
-
+            : new ProjectResult { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error};
+        
+       
     }
 
 

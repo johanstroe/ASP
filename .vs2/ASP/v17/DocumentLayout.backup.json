@@ -1,0 +1,165 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\data\\migrations\\20250407070237_initv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|solutionrelative:data\\migrations\\20250407070237_initv2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\data\\entities\\memberentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|solutionrelative:data\\entities\\memberentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\data\\contexts\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|solutionrelative:data\\contexts\\datacontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\data\\entities\\cliententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|solutionrelative:data\\entities\\cliententity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\data\\entities\\statusentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4C9DAFBA-3C39-458B-A938-2BEAEEE13FDA}|Data\\Data.csproj|solutionrelative:data\\entities\\statusentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE34238-E9DF-4986-9495-45EA4B651BBA}|ASP_Presentation\\ASP_Presentation.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\asp_presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CCE34238-E9DF-4986-9495-45EA4B651BBA}|ASP_Presentation\\ASP_Presentation.csproj|solutionrelative:asp_presentation\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D98BEC4B-2AAA-419C-A373-E619CCDA88E2}|Business\\Business.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\business\\model\\addprojectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D98BEC4B-2AAA-419C-A373-E619CCDA88E2}|Business\\Business.csproj|solutionrelative:business\\model\\addprojectform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CCE34238-E9DF-4986-9495-45EA4B651BBA}|ASP_Presentation\\ASP_Presentation.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\asp_presentation\\views\\shared\\partials\\sections\\_addprojectform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CCE34238-E9DF-4986-9495-45EA4B651BBA}|ASP_Presentation\\ASP_Presentation.csproj|solutionrelative:asp_presentation\\views\\shared\\partials\\sections\\_addprojectform.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D98BEC4B-2AAA-419C-A373-E619CCDA88E2}|Business\\Business.csproj|c:\\users\\johaa\\onedrive\\skrivbord\\asp\\asp\\business\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D98BEC4B-2AAA-419C-A373-E619CCDA88E2}|Business\\Business.csproj|solutionrelative:business\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "20250407070237_initv2.cs",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Migrations\\20250407070237_initv2.cs",
+              "RelativeDocumentMoniker": "Data\\Migrations\\20250407070237_initv2.cs",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Migrations\\20250407070237_initv2.cs",
+              "RelativeToolTip": "Data\\Migrations\\20250407070237_initv2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T07:02:37.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MemberEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Entities\\MemberEntity.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\MemberEntity.cs",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Entities\\MemberEntity.cs",
+              "RelativeToolTip": "Data\\Entities\\MemberEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T06:54:21.178Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StatusEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Entities\\StatusEntity.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\StatusEntity.cs",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Entities\\StatusEntity.cs",
+              "RelativeToolTip": "Data\\Entities\\StatusEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T06:49:17.299Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ClientEntity.cs",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Entities\\ClientEntity.cs",
+              "RelativeDocumentMoniker": "Data\\Entities\\ClientEntity.cs",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Entities\\ClientEntity.cs",
+              "RelativeToolTip": "Data\\Entities\\ClientEntity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T06:49:05.505Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DataContext.cs",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Contexts\\DataContext.cs",
+              "RelativeDocumentMoniker": "Data\\Contexts\\DataContext.cs",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Data\\Contexts\\DataContext.cs",
+              "RelativeToolTip": "Data\\Contexts\\DataContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T06:48:38.107Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\ASP_Presentation\\Program.cs",
+              "RelativeDocumentMoniker": "ASP_Presentation\\Program.cs",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\ASP_Presentation\\Program.cs",
+              "RelativeToolTip": "ASP_Presentation\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T06:26:15.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AddProjectForm.cs",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Business\\Model\\AddProjectForm.cs",
+              "RelativeDocumentMoniker": "Business\\Model\\AddProjectForm.cs",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Business\\Model\\AddProjectForm.cs",
+              "RelativeToolTip": "Business\\Model\\AddProjectForm.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAUwBQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T09:29:31.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MemberService.cs",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Business\\Services\\MemberService.cs",
+              "RelativeDocumentMoniker": "Business\\Services\\MemberService.cs",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\Business\\Services\\MemberService.cs",
+              "RelativeToolTip": "Business\\Services\\MemberService.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAAAgwBYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-04T09:24:31.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_AddProjectForm.cshtml",
+              "DocumentMoniker": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\ASP_Presentation\\Views\\Shared\\Partials\\Sections\\_AddProjectForm.cshtml",
+              "RelativeDocumentMoniker": "ASP_Presentation\\Views\\Shared\\Partials\\Sections\\_AddProjectForm.cshtml",
+              "ToolTip": "C:\\Users\\Johaa\\OneDrive\\Skrivbord\\ASP\\ASP\\ASP_Presentation\\Views\\Shared\\Partials\\Sections\\_AddProjectForm.cshtml",
+              "RelativeToolTip": "ASP_Presentation\\Views\\Shared\\Partials\\Sections\\_AddProjectForm.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAFEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-04T09:20:04.576Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

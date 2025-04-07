@@ -15,16 +15,17 @@
         <button type="button" data-modal="true" data-target="#addProjectModal" class="btn btn-add">Projects</button>
     </header>
     <div class="surface surface-cards">
-        
-        @foreach (var project in Model)
+
+
+        @if (Model != null)
         {
-            <div class="card">
-              <partial name="Partials/Sections/_ProjectList" model="project" />
-              </div>
+            foreach(var project in Model)
+            {
+                <partial name="Partials/Sections/_ProjectList" model="Model" />
+            }
         }
-
-        
-
+ 
     </div>
 </section>
+
 

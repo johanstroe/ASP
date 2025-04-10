@@ -32,12 +32,12 @@ public class EditProjectForm
     public string? Description { get; set; }
 
 
-    [Display(Name = "StartDate", Prompt = "Enter start date")]
+    [Display(Name = "Start Date", Prompt = "Enter start date")]
     [DataType(DataType.Date)]
     public DateTime StartDate { get; set; }
 
 
-    [Display(Name = "EndDate", Prompt = "Enter end date")]
+    [Display(Name = "End Date", Prompt = "Enter end date")]
     [DataType(DataType.Date)]
     public DateTime? EndDate { get; set; }
 

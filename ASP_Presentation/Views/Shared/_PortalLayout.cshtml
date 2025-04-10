@@ -36,7 +36,7 @@
             
             <img class="#settingsicon" src="/Images/Settings.svg"/>
             <img class="#divider" src="/Images/Divider.svg" />
-            <a class="btn btn-logout" asp-controller="Auth" asp-action="Logout">Log out</a>
+            <a class="btn btn-blue btn-logout" asp-controller="Auth" asp-action="Logout">Log out</a>
             </div>
         </div>
         <div class="main">
@@ -45,7 +45,7 @@
         </div>
     </div>
 
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="module" src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

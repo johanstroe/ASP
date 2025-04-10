@@ -14,6 +14,8 @@
                                 <img class="project-image" src="@(string.IsNullOrWhiteSpace(Model.Image) ? "/Images/Projecticon.svg" : Model.Image)" />
                                 <div class="project-name">@Model.ProjectName</div>
                                 <div class="project-desc">@Model.Description</div>
+                                
+                                
                             </div>
                         </td>
 
@@ -24,7 +26,20 @@
                          <td>@Model.EndDate?.ToShortDateString()</td> 
 
                         <td>
-                            <i class="fa-regular fa-ellipsis" data-modal="true" data-target="#editProjectModal"></i>
+                        <i class="fa-regular fa-ellipsis"
+                           data-modal="true"
+                           data-target="#editProjectModal"
+                           data-id="@Model.Id"
+                           data-projectname="@Model.ProjectName"
+                           data-description="@Model.Description"
+                           data-startdate="@Model.StartDate.ToString("yyyy-MM-dd")"
+                           data-enddate="@Model.EndDate?.ToString("yyyy-MM-dd")"
+                           data-budget="@Model.Budget"
+                           data-clientid="@Model.ClientId"
+                           data-memberid="@Model.MemberId"
+                           data-statusid="@Model.StatusId">
+                        </i>
+
                         </td>
                     </tr>
             }

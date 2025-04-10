@@ -875,6 +875,10 @@ input[type="checkbox"] {
     width: 550px;
 }
 
+#editProjectModal .modal-content {
+    width:550px;
+}
+
 #team-members {
 }
 

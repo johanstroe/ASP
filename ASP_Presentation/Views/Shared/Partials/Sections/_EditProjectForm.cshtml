@@ -1,0 +1,94 @@
+﻿@model EditProjectForm
+
+
+<div id="editProjectModal" class="modal">
+    <div class="modal-content">
+
+        <div class="modal-header">
+            <h3>Edit Project</h3>
+            <button class="btn-close" data-close="true"></button>
+        </div>
+
+        <form novalidate method="post" asp-action="EditProject" asp-controller="Admin">
+
+            <input asp-for="Id" readonly type="hidden" />
+
+
+            <div class="image-previewer circle ">
+                <img src="" class="image-preview" />
+                <input asp-for="ProjectImage" type="file" accept="image/*" class="hide" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProjectName"></label>
+                <div class="field-group">
+                    <input asp-for="ProjectName" />
+                    <span asp-validation-for="ProjectName"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="ClientId"></label>
+                <div class="field-group">
+                    <input asp-for="ClientId" />
+                    <span asp-validation-for="ClientId"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="MemberId"></label>
+                <div class="field-group">
+                    <input asp-for="MemberId" />
+                    <span asp-validation-for="MemberId"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <div class="field-group">
+                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                    <span asp-validation-for="Description"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StartDate"></label>
+                <div class="field-group">
+                    <input asp-for="StartDate" />
+                    <span asp-validation-for="StartDate"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EndDate"></label>
+                <div class="field-group">
+                    <input asp-for="EndDate" />
+                    <span asp-validation-for="EndDate"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Budget"></label>
+                <div class="field-group">
+                    <input asp-for="Budget" />
+                    <span asp-validation-for="Budget"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="StatusId"></label>
+                <div class="field-group">
+                    <input asp-for="StatusId" />
+                    <span asp-validation-for="StatusId"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-submit btn-blue">Update Project</button>
+
+        </form>
+
+    </div>
+</div>
+

@@ -1,44 +1,32 @@
 ﻿
-@model IEnumerable<Projects>
+@model Projects
 
 <div class="project-list">
     <table>
-        @* <thead> *@
-        @*     <tr> *@
-        @*         <th class="project-check"><input type="checkbox" /></th> *@
-        @*         <th class="project-info">Project</th> *@
-        @*         <th class="project-location">Client</th> *@
-        @*         <th class="project-phone">Status</th> *@
-        @*         <th class="project-date">Start</th> *@
-        @*         <th class="project-status">End</th> *@
-        @*         <th class="project-actions"></th> *@
-        @*     </tr> *@
-        @* </thead> *@
         <tbody>
             @if (Model != null)
             {
-                @foreach (var project in Model)
-                {
-                    
-                    <tr>
+                
+                    <tr class="card">
                         <td>
-                            <div class="">
-                                <img class="project-image" src="@(string.IsNullOrWhiteSpace(project.Image) ? "/Images/Projecticon.svg" : project.Image)" />
-                                <div class="project-name">@project.ProjectName</div>
-                                <div class="project-desc">@project.Description</div>
+                            <div>
+
+                                <img class="project-image" src="@(string.IsNullOrWhiteSpace(Model.Image) ? "/Images/Projecticon.svg" : Model.Image)" />
+                                <div class="project-name">@Model.ProjectName</div>
+                                <div class="project-desc">@Model.Description</div>
                             </div>
                         </td>
 
-                         <td>@project.Client?.ClientName</td> 
-                         <td>@project.Status?.StatusName</td> 
-                         <td>@project.StartDate.ToShortDateString()</td> 
-                         <td>@project.EndDate?.ToShortDateString()</td> 
+
+                         <td>@Model.Client</td> 
+                         <td>@Model.Status</td> 
+                         <td>@Model.StartDate.ToShortDateString()</td> 
+                         <td>@Model.EndDate?.ToShortDateString()</td> 
 
                         <td>
                             <i class="fa-regular fa-ellipsis" data-modal="true" data-target="#editProjectModal"></i>
                         </td>
                     </tr>
-                }
             }
         </tbody>
     </table>

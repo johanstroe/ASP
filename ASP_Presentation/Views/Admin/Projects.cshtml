@@ -6,6 +6,8 @@
 
 
 <partial name="Partials/Sections/_AddProjectForm" model="new AddProjectForm()" />
+<partial name="Partials/Sections/_EditProjectForm" model="new EditProjectForm()" /> 
+
 
 
 
@@ -21,7 +23,7 @@
         {
             foreach(var project in Model)
             {
-                <partial name="Partials/Sections/_ProjectList" model="Model" />
+                <partial name="Partials/Sections/_ProjectList" model="project" />
             }
         }
  

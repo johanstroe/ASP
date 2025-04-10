@@ -4,12 +4,10 @@
 using Business.Interface;
 using Business.Model;
 using Business.Services;
-using Data.Contexts;
-using Data.Entities;
 using Domain.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+
 
 namespace ASP_Presentation.Controllers;
 
@@ -81,7 +79,7 @@ public class AdminController : Controller
     }
 
     [HttpPost]
-    public IActionResult EditClient(AddClientForm form)
+    public IActionResult EditClient(EditClientForm form)
     {
         if (!ModelState.IsValid)
         {
@@ -177,6 +175,27 @@ public class AdminController : Controller
 
         return Ok(new { success = true, redirectUrl = "/projects" });
         
+    }
+
+    [HttpPost]
+    public IActionResult EditProject(EditProjectForm form)
+    {
+        if (!ModelState.IsValid)
+        {
+            var errors = ModelState
+                .Where(x => x.Value?.Errors.Count > 0)
+                .ToDictionary(
+                kvp => kvp.Key,
+                kvp => kvp.Value?.Errors.Select(x => x.ErrorMessage).ToArray()
+                );
+
+            return BadRequest(new { success = false, errors });
+        }
+
+        //  Send data to clientService
+
+
+        return Ok(new { success = true });
     }
 
 

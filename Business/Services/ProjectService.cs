@@ -6,6 +6,7 @@ using Data.Repositories;
 using Domain.Dtos;
 using Domain.Extentions;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Business.Services;
@@ -24,7 +25,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         if (formData == null)
             return new ProjectResult { Succeeded = false, StatusCode = 400, Error = "Not all required fields are supplied" };
 
-      
+
 
         var projectEntity = formData.MapTo<ProjectEntity>();
         var statusResult = await _statusService.GetStatusByIdAsync(1);
@@ -38,9 +39,9 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
         return result.Succeeded
             ? new ProjectResult { Succeeded = true, StatusCode = 201 }
-            : new ProjectResult { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error};
-        
-       
+            : new ProjectResult { Succeeded = false, StatusCode = result.StatusCode, Error = result.Error };
+
+
     }
 
 
@@ -74,6 +75,47 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
     }
 
-}
+    //Genererad UpdateProjectAsync av Chatgpt4o
+    public async Task<ProjectResult> UpdateProjectAsync(EditProjectForm formData)
+    {
+        if (formData == null)
+            return new ProjectResult
+            {
+                Succeeded = false,
+                StatusCode = 400,
+                Error = "Form data is null!"
+            };
 
+        // 1. Mappa formuläret direkt till en ProjectEntity
+        var entity = formData.MapTo<ProjectEntity>();
+
+        // 2. Hantera eventuell ny bild
+        if (formData.ProjectImage != null && formData.ProjectImage.Length > 0)
+        {
+            var fileName = Path.GetFileName(formData.ProjectImage.FileName);
+            var filePath = Path.Combine("wwwroot/Images", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await formData.ProjectImage.CopyToAsync(stream);
+            }
+
+            entity.Image = "/Images/" + fileName;
+        }
+
+        // 3. Viktigt! Nolla navigation properties så EF Core inte kraschar
+        entity.Client = null!;
+        entity.Member = null!;
+        entity.Status = null!;
+
+        // 4. Uppdatera via repository
+        var updateResult = await _projectRepository.UpdateAsync(entity);
+
+        // 5. Returnera resultatet
+        return updateResult.Succeeded
+            ? new ProjectResult { Succeeded = true, StatusCode = 200 }
+            : new ProjectResult { Succeeded = false, StatusCode = updateResult.StatusCode, Error = updateResult.Error };
+    }
+
+}
 

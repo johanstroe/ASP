@@ -30,19 +30,28 @@
             @await Html.PartialAsync("Partials/Components/_NavLinks")
         </div>
         <div class="top">
-            <div class="account-info">
-                <div class="provider">@provider</div>
-                <div class="email">@email</div>
-            
-            <img class="#settingsicon" src="/Images/Settings.svg"/>
-            <img class="#divider" src="/Images/Divider.svg" />
+        <form method="get" asp-asp-controller="" asp-action="" novalidate>
+        <input type="search" class="form-search-input" placeholder:"Search anything..." />
+        </form>
+       
+         <button type="button" data-type="dropdown" data-target="#notifications" class="btn-notification">
+         <img src="~/Images/Settings.svg" />
+         </button>
+         <button type="button" data-type="dropdown" data-target="#account" class="btn-account">
+         <img src="~/Images/Avatars/Avatar2.svg" alt="Male avatar picture" />
+         </button>
+
             <a class="btn btn-blue btn-logout" asp-controller="Auth" asp-action="Logout">Log out</a>
-            </div>
+             
         </div>
         <div class="main">
 
             @RenderBody()
         </div>
+    </div>
+    <div class="account-info">
+        <div class="provider">@provider</div>
+        <div class="email">@email</div>
     </div>
 
     <script type="module" src="~/js/site.js" asp-append-version="true"></script>

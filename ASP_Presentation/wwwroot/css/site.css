@@ -48,17 +48,41 @@
     --navlink-background-color: transparent;
     --navlink-background-hover-color: var(--blue-accent-10);
     --navlink-background-active-color: pink;
+    /*form -label  */
+    --form-label-color: var(--dark-200);
+   
+    /* form input */
+    
     --form-text-color: var(--white-100);
     --form-border-color: var(--white-100);
     --form-background-color: var(--white-100);
-    --form-label-color: var(--dark-200);
     --form-input-placeholder-color: var(--gray-600);
     --form-input-background-color: var(--white-100);
     --form-input-border-color: var(--gray-400);
     --form-input-border-focus-color: var(--blue-accent-10);
+   
+    /*form search */
+   
+    --form-search-input-placeholder-color: var(--gray-600);
+    --form-search-input-background-color: var(--transparent);
+    --form-search-input-border-color: var(--transparent);
+    --form-search-input-text-color: var(--dark-400);
+    --form-search-input-search-border-focus-color: var(--blue-accent-10);
+
+   
+    
+    /* form - checkbox */
+
+    --form-checkbox-text-color: var(--white-100);
+    --form-checkbox-border-color: var(--gray-400);
+    --form-checkbox-checked-border-color: var(--blue-accent);
+    --form-checkbox-checked-background-color: var(--blue-accent);
+    /* table */
     --table-header-background-color: transparent;
     --table-header-text-color: var(--gray-800);
     --table-tbody-tr-background-hover-color: var(--blue-accent-10);
+    /*modal */
+
     --modal-screen-background-color: var(--transparent);
     --modal-background-color: var(--white-200);
     --text-color: var(--dark-400);
@@ -182,10 +206,6 @@ section > header {
     text-align: center;
 }
 
-.google-icon {
-    position: absolute;
-    left: 1rem;
-}
 
 label {
     font-family: var(--font-standard);
@@ -308,9 +328,9 @@ label {
     border-bottom: 1px solid var(--border-color);
     padding: 1rem 2rem;
     display: flex;
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 1fr auto auto;
     align-items: center;
-    justify-content:flex-end;
+    gap:3rem;
 }
 
 .top-container {
@@ -427,6 +447,7 @@ logo-text {
     min-width:150px;
 }
 
+
 #signup-form-button {
     margin-top: 1rem;
 }
@@ -505,13 +526,41 @@ btn-gray {
     font-family: var(--font-fa-pro);
 }
 
+.btn-google {
+    background-color: var(--gray-200);
+    margin-bottom:1rem;
+    box-shadow:none;
+    color:black;
+    position:relative;
+    font-family:var(--font-standard);
+    
+}
 
+.btn-google:hover {
 
+    background-color:var(--gray-300);
+}
+
+.google-icon {
+    position: absolute;
+    left:15px;
+    width:20px;
+    height:20px;
+
+}
+
+.btn-account {
+    font-size:12px;
+    border:none;
+    background-color: var(--background-color);
+}
+
+.btn-notification {
+    background-color: var(--background-color);
+    border:none;
+}
 /* lists */
-
-
 /* tables */
-
 table {
     width: 100%;
     border-collapse: collapse;
@@ -580,6 +629,7 @@ form .field-group {
     display: none;
 }
 
+
 form input,
 form select,
 form textarea {
@@ -624,6 +674,33 @@ form .field-validation-error {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
+}
+
+.form-search-input {
+    position: relative;
+    width: 100%;
+    min-height: 40px;
+    font-size: 1em;
+    font-weight: 400;
+    font-style: normal;
+    font-family: var(--font-standard);
+    color: var(--form-input-text-color);
+    padding: 0.5rem 1rem;
+    outline: none;
+    background-color: var(--white-100);
+    border: 1px solid var(--form-search-input-border-color);
+    transition: background-color 1.2s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
+    
+&:focus {
+    border-bottom: 1px solid var(--form-input-border-focus-color);
+}
+
+   
+&::placeholder {
+    color: var(--form-input-placeholder-color);
+    font-size: 0.9em;
+}
+
 }
 
 form-footer {

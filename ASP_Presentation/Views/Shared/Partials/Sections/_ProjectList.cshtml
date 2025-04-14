@@ -1,31 +1,33 @@
-﻿
-@model Projects
+﻿@model Projects
+
+
+
 
 <div class="project-list">
     <table>
         <tbody>
             @if (Model != null)
             {
-                
-                    <tr class="card">
-                        <td>
-                            <div>
 
-                                <img class="project-image" src="@(string.IsNullOrWhiteSpace(Model.Image) ? "/Images/Projecticon.svg" : Model.Image)" />
-                                <div class="project-name">@Model.ProjectName</div>
-                                <div class="project-desc">@Model.Description</div>
-                                
-                                
-                            </div>
-                        </td>
+                <tr class="card">
+                    <td>
+                        <div>
+
+                            <img class="project-image" src="@(string.IsNullOrWhiteSpace(Model.Image) ? "/Images/Projecticon.svg" : Model.Image)" />
+                            <div class="project-name">@Model.ProjectName</div>
+                            <div class="project-desc">@Model.Description</div>
 
 
-                         <td>@Model.Client</td> 
-                         <td>@Model.Status</td> 
-                         <td>@Model.StartDate.ToShortDateString()</td> 
-                         <td>@Model.EndDate?.ToShortDateString()</td> 
+                        </div>
+                    </td>
 
-                        <td>
+
+                    @* <td>@Model.Client</td> *@
+                    @* <td>@Model.Status</td> *@
+                    @* <td>@Model.StartDate.ToShortDateString()</td> *@
+                    @* <td>@Model.EndDate?.ToShortDateString()</td> *@
+
+                    <td>
                         <i class="fa-regular fa-ellipsis"
                            data-modal="true"
                            data-target="#editProjectModal"
@@ -40,8 +42,8 @@
                            data-statusid="@Model.StatusId">
                         </i>
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

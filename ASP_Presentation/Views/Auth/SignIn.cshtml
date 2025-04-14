@@ -6,14 +6,23 @@
 
 
 <section id="login">
-    <form asp-controller="Auth" asp-action="SignIn" method="post" novalidate enctype="multipart/form-data">
-        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
-        
-        
-        
-        <h1> @ViewData["Title"] </h1>
-        
+    
+    <h1> @ViewData["Title"] </h1>
 
+
+    <form method="post" action="/Auth/ExternalSignIn" class="external-login-form">
+        <input type="hidden" name="provider" value="Google" />
+        <input type="hidden" name="returnUrl" value="@ViewBag?.ReturnUrl" />
+        <button type="submit" class="btn btn-submit btn-external btn-google">
+            <img src="@Url.Content("~/Images/google-icon.svg")" alt="Google sign in" class="google-icon" />
+            <span>Login with Google</span>
+        </button>
+    </form>
+
+    
+    <form asp-controller="Auth" asp-action="SignIn" method="post" novalidate enctype="multipart/form-data">
+        <input type="hidden" name="returnUrl" value="@ViewBag?.ReturnUrl" />
+        
         <div class="form-group">
             <label asp-for="Email"></label>
             <input asp-for="Email" type="email"/>
@@ -41,12 +50,7 @@
     </div>
     </form>
 
-    <form method="post" action="/Auth/ExternalSignIn"  class="external-login-form">
-        <input type="hidden" name="provider" value="Google" />
-        <input type="hidden" name="returnUrl" value="@ViewBag?.ReturnUrl" />
-        <button type="submit" class="btn-external btn-google">Sign in with Google</button>
-    </form>
-
+    
 
 </section>
 

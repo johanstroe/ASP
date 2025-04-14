@@ -1,6 +1,4 @@
-﻿using Business.Dtos;
-using Business.Model;
-using Domain.Dtos;
+﻿using Business.Model;
 using Domain.Models;
 
 namespace Business.Interface
@@ -10,5 +8,6 @@ namespace Business.Interface
         Task<ProjectResult> CreateProjectAsync(AddProjectForm formData);
         Task<ProjectResult<Projects>> GetProjectAsync(string id);
         Task<ProjectResult<IEnumerable<Projects>>> GetProjectsAsync();
+        Task<ProjectResult> UpdateProjectAsync(EditProjectForm formData);
     }
 }

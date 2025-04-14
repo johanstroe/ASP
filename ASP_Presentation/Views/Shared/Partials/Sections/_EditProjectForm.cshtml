@@ -9,7 +9,7 @@
             <button class="btn-close" data-close="true"></button>
         </div>
 
-        <form novalidate method="post" asp-action="EditProject" asp-controller="Admin">
+        <form class="ajaxForm" novalidate method="post" asp-action="EditProject" asp-controller="Admin" enctype="multipart/form-data">
 
             <input asp-for="Id" readonly type="hidden" />
 
@@ -80,7 +80,9 @@
             <div class="form-group">
                 <label asp-for="StatusId"></label>
                 <div class="field-group">
-                    <input asp-for="StatusId" />
+                    <select asp-for="StatusId" name="StatusId">
+                        <option disabled selected value="">Select status</option>
+                    </select>  
                     <span asp-validation-for="StatusId"></span>
                 </div>
             </div>

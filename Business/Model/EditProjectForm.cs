@@ -1,5 +1,6 @@
 ﻿
 
+using Domain.Models;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
@@ -45,7 +46,9 @@ public class EditProjectForm
     [DataType(DataType.Currency)]
     public decimal Budget { get; set; }
 
-    public string StatusId { get; set; } = null!;
+    public List<Status> Statuses { get; set; } = [];
+
+    public int StatusId { get; set; }
 
     //public List<Status> Statuses { get; set; } = [];
 

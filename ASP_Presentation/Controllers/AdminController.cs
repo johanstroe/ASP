@@ -178,7 +178,7 @@ public class AdminController : Controller
     }
 
     [HttpPost]
-    public IActionResult EditProject(EditProjectForm form)
+    public async Task <IActionResult> EditProject(EditProjectForm form)
     {
         if (!ModelState.IsValid)
         {
@@ -192,10 +192,12 @@ public class AdminController : Controller
             return BadRequest(new { success = false, errors });
         }
 
+        var result = await _projectService.UpdateProjectAsync(form);
+
         //  Send data to clientService
 
 
-        return Ok(new { success = true });
+        return Ok(new { success = true, redirectUrl = "/projects" });
     }
 
 

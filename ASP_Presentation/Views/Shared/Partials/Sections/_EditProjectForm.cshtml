@@ -11,6 +11,8 @@
 
         <form class="ajaxForm" novalidate method="post" asp-action="EditProject" asp-controller="Admin" enctype="multipart/form-data">
 
+            <input asp-for="Id" type="hidden" />
+
             <div class="image-previewer circle ">
                 <img src="" class="image-preview" />
                 <input asp-for="ProjectImage" type="file" accept="image/*" class="hide" />

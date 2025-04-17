@@ -29,7 +29,9 @@
             <div class="form-group">
                 <label asp-for="ClientId"></label>
                 <div class="field-group">
-                    <input asp-for="ClientId" />
+                    <select asp-for="ClientId" asp-items="ViewBag.Clients">
+                        <option disabled selected value="">Select a client</option>
+                    </select>
                     <span asp-validation-for="ClientId"></span>
                 </div>
             </div>
@@ -37,35 +39,34 @@
             <div class="form-group">
                 <label asp-for="MemberId"></label>
                 <div class="field-group">
-                    <input asp-for="MemberId" />
+                    <select asp-for="MemberId" asp-items="ViewBag.Members">
+                        <option disabled selected value="">Select a member</option>
+                    </select>
                     <span asp-validation-for="MemberId"></span>
                 </div>
             </div>
 
 
-            <div class="form-group">
-                <label asp-for="Description"></label>
-                <div class="field-group">
-                    <textarea asp-for="Description" class="form-control" rows="4"></textarea>
-                    <span asp-validation-for="Description"></span>
+            <div class="form-row">
+                <div class="form-group">
+                    <label asp-for="StartDate"></label>
+                    <div class="field-group">
+                        <input asp-for="StartDate" class="date-picker" />
+                        <span asp-validation-for="StartDate"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EndDate"></label>
+                    <div class="field-group">
+                        <input asp-for="EndDate" class="date-picker" />
+                        <span asp-validation-for="EndDate"></span>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="StartDate"></label>
-                <div class="field-group">
-                    <input asp-for="StartDate" />
-                    <span asp-validation-for="StartDate"></span>
-                </div>
-            </div>
 
-            <div class="form-group">
-                <label asp-for="EndDate"></label>
-                <div class="field-group">
-                    <input asp-for="EndDate" />
-                    <span asp-validation-for="EndDate"></span>
-                </div>
-            </div>
+
 
             <div class="form-group">
                 <label asp-for="Budget"></label>
@@ -75,26 +76,16 @@
                 </div>
             </div>
 
+
             <div class="form-group">
                 <label asp-for="StatusId"></label>
                 <div class="field-group">
-                    <input asp-for="StatusId" />
+                    <select asp-for="StatusId" name="StatusId">
+                        <option disabled selected value="">Select status</option>
+                    </select>
                     <span asp-validation-for="StatusId"></span>
                 </div>
             </div>
-
-             @* <div class="form-group">   *@
-             @*   <label asp-for="StatusId">Status</label>   *@
-             @*      <div class="field-group">   *@
-             @*          <select asp-for="StatusId">   *@
-             @*               <option disabled selected value="">Select status</option>    *@
-                        
-             @*         </select>   *@
-             @*       <span asp-validation-for="StatusId"></span>  *@
-             @*    </div>   *@
-             @* </div>   *@
-
-            
 
             <button type="submit" class="btn btn-blue btn-submit">Create</button>
 

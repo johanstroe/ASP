@@ -190,7 +190,7 @@ section > header {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(280px, 1fr));
     gap: 1.5rem;
-    background-color: var(--background-color);
+    background-color: transparent;
     align-items: center;
 }
 
@@ -211,6 +211,64 @@ label {
     font-family: var(--font-standard);
     font-weight: var(--font-bold);
     text-align: left;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    
+}
+
+.date-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+    .date-input .flatpickr-input {
+        width: 100%;
+        padding-right: 2rem;
+    }
+
+    .date-input .calendar-icon {
+        position: absolute;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        pointer-events: all;
+    }
+
+
+.real-date {
+    display: none;
+}
+
+.calendar-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+    .form-row .form-group {
+        flex: 1;
+    }
+
+.date-input input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+.calendar-icon {
+    cursor: pointer;
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    height: 18px;
+    width: 18px;
 }
 
 .signup-form {
@@ -279,22 +337,6 @@ label {
     opacity: 0.9;
 }
 
-    /* Kod genererad av chatgpt för att få till "divider strecken" */
-
-    .divider::before,
-    .divider::after {
-        content: "";
-        flex: 1;
-        border-bottom: 1px solid #ccc;
-    }
-
-    .divider:not(:empty)::before {
-        margin-right: 1rem;
-    }
-
-    .divider:not(:empty)::after {
-        margin-left: 1rem;
-    }
 
 .portal {
     display: grid;
@@ -687,21 +729,18 @@ form .field-validation-error {
     color: var(--form-input-text-color);
     padding: 0.5rem 1rem;
     outline: none;
-    background-color: var(--white-100);
-    border: 1px solid var(--form-search-input-border-color);
+    background-color: var(--background-color);
+    border: none;
     transition: background-color 1.2s ease-in-out, border-color 0.1s ease-in-out, color 0.1s ease-in-out;
-    
-&:focus {
-    border-bottom: 1px solid var(--form-input-border-focus-color);
 }
 
-   
-&::placeholder {
-    color: var(--form-input-placeholder-color);
-    font-size: 0.9em;
-}
+ .form-search-input:focus {
+    border:none;
+    }
 
-}
+ .search-form {
+     display:flex;
+ }
 
 form-footer {
     margin-top: 3rem;
@@ -923,13 +962,14 @@ input[type="checkbox"] {
     align-items: center;
     background-color: var(--modal-screen-background-color);
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
+    z-index:1000;
 }
 
     .modal .modal-content {
+        
+        max-width:600px;
+        height:auto;
         background-color: white;
         border-radius: 16px;
         box-shadow: 0 4px 4px 3px rgba(196, 196, 196, 0.1);
@@ -948,6 +988,11 @@ input[type="checkbox"] {
     width: 550px;
 }
 
+#addProjectModal .modal-content {
+    width: 550px;
+    max-height:100vh;
+}
+
 #editClientModal .modal-content {
     width: 550px;
 }
@@ -960,6 +1005,7 @@ input[type="checkbox"] {
 }
 
 #projects {
+   
 }
 
 #clients {
@@ -988,4 +1034,53 @@ input[type="checkbox"] {
     .alert-notification.error {
         background-color: var(--red);
         color: white;
+    }
+
+/* Själva dropdown-rutan */
+.account-dropdown {
+    display: none;
+    position: absolute;
+    top: 60px; /* justera beroende på headerhöjd */
+    right: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    z-index: 10;
+    width: 200px;
+}
+
+    /* Visa när aktiv */
+    .account-dropdown.show {
+        display: block;
+    }
+
+/* Info-sektionen (avatar + namn) */
+.account-info {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0.75rem;
+}
+
+    .account-info img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+/* Logout-länk */
+.logout-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+    .logout-link i {
+        font-size: 1rem;
     }

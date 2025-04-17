@@ -24,17 +24,17 @@ public class AddProjectForm
     [Display(Name = "Description", Prompt = "Type something")]
     [DataType(DataType.Text)]
     
-    public string? Description {get; set;} 
+    public string? Description {get; set;}
 
 
     [Display(Name = "StartDate", Prompt = "Enter start date")]
     [DataType(DataType.Date)]
-    public DateTime StartDate { get; set; }
+    public DateTime StartDate { get; set; } = DateTime.Today;
 
 
     [Display(Name = "EndDate", Prompt = "Enter end date")]
     [DataType(DataType.Date)]
-    public DateTime? EndDate { get; set; }
+    public DateTime? EndDate { get; set; } = DateTime.Today.AddMonths(1);
 
     [Display(Name = "Budget", Prompt = "Enter budget")]
     [DataType(DataType.Currency)]

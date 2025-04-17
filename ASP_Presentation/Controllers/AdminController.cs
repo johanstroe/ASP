@@ -7,6 +7,7 @@ using Business.Services;
 using Domain.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 
 namespace ASP_Presentation.Controllers;
@@ -20,24 +21,47 @@ public class AdminController : Controller
     private readonly IMemberService _memberService;
     private readonly IProjectService _projectService;
     private readonly IStatusService _statusService;
+    private readonly IClientService _clientService;
 
-    public AdminController(IMemberService memberService, IProjectService projectService, IStatusService statusService)
+    public AdminController(IMemberService memberService, IProjectService projectService, IStatusService statusService, IClientService clientService)
     {
         _memberService = memberService;
         _projectService = projectService;
         _statusService = statusService;
+        _clientService = clientService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
+        var email = User?.Identity?.Name;
+        if (email != null)
+        {
+            var member = await _memberService.GetMemberByEmailAsync(email);
+            ViewBag.FullName = $"{member?.FirstName} {member?.LastName}";
+        }
+       
         return View();
     }
-
+    
+    [HttpGet("")]
     [Route("projects")]
     public async Task <IActionResult> Projects()
     {
         var response = await _projectService.GetProjectsAsync();
+        var clients = await _clientService.GetClientsAsync();
+        ViewBag.Clients = new SelectList(clients.Result, "Id", "ClientName");
+
+        var members = await _memberService.GetMembersAsync();
         
+        ViewBag.Members = new SelectList(
+        members.Result?.Select(m => new {
+        Id = m.Id,
+        FullName = $"{m.FirstName} {m.LastName}"
+             }),
+              "Id",
+              "FullName"
+                );
+
         return View(response.Result);
     }
    
@@ -49,15 +73,18 @@ public class AdminController : Controller
         return View(members.Result);
     }
 
-    [HttpGet("")]
-    public IActionResult Clients()
+
+    [HttpGet]
+    [Route("clients")]
+    public async Task<IActionResult> Clients()
     {
-        return View("clients");
+        var response = await _clientService.GetClientsAsync();
+        return View(response.Result);
     }
 
     [HttpPost]
 
-    public IActionResult AddClient(AddClientForm form)
+    public async Task<IActionResult> AddClient(AddClientForm form)
     {
         if (!ModelState.IsValid)
         {
@@ -71,9 +98,17 @@ public class AdminController : Controller
             return BadRequest(new { success = false, errors });
         }
 
+        var result = await _clientService.CreateClientAsync(form);
+
+        if (!result.Succeeded)
+        {
+            return StatusCode(result.StatusCode, new { success = false, error = result.Error });
+        }
+
+
         //  Send data to clientService
 
-        return Ok(new { success = true, redirectUrl = "/members" });
+        return Ok(new { success = true, redirectUrl = "/clients" });
 
 
     }
@@ -176,6 +211,8 @@ public class AdminController : Controller
         return Ok(new { success = true, redirectUrl = "/projects" });
         
     }
+
+ 
 
     [HttpPost]
     public async Task <IActionResult> EditProject(EditProjectForm form)

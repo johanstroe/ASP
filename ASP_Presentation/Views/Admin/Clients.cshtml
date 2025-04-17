@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Client>
+
+@{
     ViewData["Title"] = "Clients";
 }
 
@@ -6,8 +8,8 @@
     
 </div>
 
-<partial name="Partials/Sections/_AddClientForm" />
-<partial name="Partials/Sections/_EditClientForm" />
+<partial name="Partials/Sections/_AddClientForm" model="new AddClientForm()" />
+<partial name="Partials/Sections/_EditClientForm" model="new EditClientForm()" />
 
 <section id="clients">
 
@@ -17,8 +19,17 @@
 
     </header>
 
-    <div class="surface">
-        <partial name="Partials/Sections/_ClientList" />
+    <div class="surface surface-cards">
+
+
+        @if (Model != null)
+        {
+            foreach (var client in Model)
+            {
+                <partial name="Partials/Sections/_ClientList" model="client" />
+            }
+        }
+
     </div>
 
 </section>

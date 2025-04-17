@@ -17,18 +17,4 @@ public class AddClientForm
     [Required(ErrorMessage = "Required")]
     public string ClientName { get; set; } = null!;
 
-    [Display(Name = "Email", Prompt = "Enter email address")]
-    [DataType(DataType.EmailAddress)]
-    [Required(ErrorMessage = "Required")]
-    public string Email { get; set; } = null!;
-
-
-    [Display(Name = "Location", Prompt = "Enter your location")]
-    [DataType(DataType.Text)]   
-    public string? Location { get; set; }
-
-
-    [Display(Name = "Phone", Prompt = "Enter phone number")]
-    [DataType(DataType.PhoneNumber)]
-    public string? Phone { get; set; } 
 }

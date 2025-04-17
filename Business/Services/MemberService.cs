@@ -78,4 +78,11 @@ public class MemberService(IMemberRepository memberRepository, UserManager<Membe
             }
         }
     }
+
+    public async Task<Member?> GetMemberByEmailAsync(string email)
+    {
+        var result = await _memberRepository.GetAsync(m => m.Email == email);
+        return result.Succeeded ? result.Result : null;
+    }
+
 }

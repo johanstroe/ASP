@@ -1,4 +1,6 @@
-﻿
+﻿import { statusOptions } from './status.js'
+//import { setupCalendarIcons } from './calendar.js'
+
 //SetupModal kod genererad av chatgpt4o
 export function setupModal() {
     
@@ -53,6 +55,7 @@ export function setupModal() {
                 }
 
                 modal.style.display = 'flex'
+                
             }
         })
     })

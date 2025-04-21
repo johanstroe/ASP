@@ -27,14 +27,22 @@ public class AddMemberForm
     public string Email { get; set; } = null!;
 
 
-    [Display(Name = "Location", Prompt = "Enter your location")]
+    [Display(Name = "Address", Prompt = "Enter your address")]
     [DataType(DataType.Text)]
-    public string? Location { get; set; }
+    public string? Address { get; set; }
+
+    [Display(Name = "Job title", Prompt = "State your job title")]
+    [DataType(DataType.Text)]
+    public string? JobTitle { get; set; }
 
 
     [Display(Name = "Phone", Prompt = "Enter phone number")]
     [DataType(DataType.PhoneNumber)]
     public string? Phone { get; set; }
+
+    public int? BirthDay { get; set; }   
+    public int? BirthMonth { get; set; } 
+    public int? BirthYear { get; set; }  
 }
 
 

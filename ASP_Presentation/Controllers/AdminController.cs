@@ -158,7 +158,8 @@ public class AdminController : Controller
         FirstName = form.FirstName,
         LastName = form.LastName,
         Email = form.Email,
-
+        ProfileImage = form.MemberImage,
+        
         };
 
        await _memberService.CreateMemberAsync(member);

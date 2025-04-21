@@ -40,7 +40,24 @@ public class MemberService(IMemberRepository memberRepository, UserManager<Membe
             : new MemberResult { Succeeded = false, StatusCode = 500, Error = "Unable to add member to role" };
 
     }
+
     public async Task<MemberResult> CreateMemberAsync(SignUpForm formData, string? roleName = "User")
+    {
+        var addForm = new AddMemberForm
+        {
+            FirstName = formData.FirstName,
+            LastName = formData.LastName,
+            MemberImage = formData.ProfileImage
+        };
+
+
+
+        return await CreateMemberAsync(addForm, roleName);
+    }
+
+
+
+    public async Task<MemberResult> CreateMemberAsync(AddMemberForm formData, string? roleName = "User")
     {
         if (formData == null)
             return new MemberResult { Succeeded = false, StatusCode = 400, Error = "form data cannot be null" };
@@ -56,8 +73,42 @@ public class MemberService(IMemberRepository memberRepository, UserManager<Membe
                 FirstName = formData.FirstName,
                 LastName = formData.LastName,
                 Email = formData.Email,
-                UserName = formData.Email
+                UserName = formData.Email,
+                PhoneNumber = formData.Phone,
+                JobTitle = formData.JobTitle,
+                Address = new MemberAddressEntity
+                {
+                    StreetName = formData.Address ?? "Unknown Address"
+
+                }
+
             };
+
+
+            
+            if (formData.BirthYear.HasValue && formData.BirthMonth.HasValue && formData.BirthDay.HasValue)
+            {
+                memberEntity.DateOfBirth = new DateOnly(
+                    formData.BirthYear.Value,
+                    formData.BirthMonth.Value,
+                    formData.BirthDay.Value
+                );
+            }
+
+
+            if (formData.MemberImage is { Length: > 0 })
+            {
+                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(formData.MemberImage.FileName)}";
+                var folder = Path.Combine("wwwroot", "Images", "Members");
+                var filePath = Path.Combine(folder, fileName);
+
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath)!);
+
+                using var stream = new FileStream(filePath, FileMode.Create);
+                await formData.MemberImage.CopyToAsync(stream);
+
+                memberEntity.ImageUrl = $"/Images/Members/{fileName}";
+            }
 
             var result = await _userManager.CreateAsync(memberEntity, "Sommar123!");
             if (result.Succeeded)

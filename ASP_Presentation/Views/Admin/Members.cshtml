@@ -5,9 +5,6 @@
     ViewData["Title"] = "Team Members";
 }
 
-
-<partial name="Partials/Sections/_AddMemberForm" model="new AddMemberForm()" />
-
 <section id="team-members">
     <header>
         <h2>Team Members</h2>
@@ -15,7 +12,7 @@
     </header>
     <div class="surface">
         
-        <partial name="Partials/Sections/_MemberList" />
+        <partial name="Partials/Sections/_MemberList" model="Model" />
     </div>
 </section>
 

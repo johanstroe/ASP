@@ -1,11 +1,10 @@
 ﻿ @model IEnumerable<Member>
 
-
 <div class="member-list">
     @foreach (var member in Model)
     {
         <div class="member-card">
-            <img src="~/Images/Avatars/Avatar1.svg" class="avatar" />
+            <img src="@(string.IsNullOrWhiteSpace(member.ImageUrl) ? "/Images/Avatars/Avatar1.svg" : member.ImageUrl)" />
 
             <h3>@member.FirstName @member.LastName</h3>
 
@@ -18,3 +17,7 @@
         </div>
     }
 </div>
+
+<partial name="Partials/Sections/_AddMemberForm" model="new AddMemberForm()" />
+<partial name="Partials/Sections/_EditMemberForm" model="new EditMemberForm()" />
+

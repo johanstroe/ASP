@@ -8,6 +8,7 @@ public class ClientEntity
 {
     [Key]
     public string Id { get; set; } = Guid.NewGuid().ToString();
+    public string? ImageUrl { get; set; }
 
     public string ClientName { get; set; } = null!;
 

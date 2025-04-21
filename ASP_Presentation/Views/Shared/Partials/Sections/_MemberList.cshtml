@@ -1,41 +1,20 @@
-﻿<div class="member-list">
-    <table>
-        <thead>
-            <tr>
-                <th class="member-check"><input type="checkbox" /></th>
-                <th class="member-info">Client Name</th>
-                <th class="member-location">Location</th>
-                <th class="member-phone">Phone</th>
-                <th class="member-date">Date</th>
-                <th class="member-status">Status</th>
-                <th class="member-actions"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null)
-            {
-                foreach (var member in Model)
-                {
-                    <tr>
-                        <td class="member-check">
-                            <input type="checkbox" />
-                        </td>
+﻿ @model IEnumerable<Member>
 
-                        <td class="member-info">
-                            <img class="member-image" src="~/Images/Avatars/Avatar1.svg" />
-                            <div class="member-name">@member.FirstName @member.LastName</div>
-                            <div class="member-email">@member.Email</div>
-                        </td>
 
-                        <td class="member-location">@member.Location</td>
-                        <td class="member-phone">@member.Phone</td>
+<div class="member-list">
+    @foreach (var member in Model)
+    {
+        <div class="member-card">
+            <img src="~/Images/Avatars/Avatar1.svg" class="avatar" />
 
-                        <td class="member-actions">
-                            <i class="fa-regular fa-ellipsis" data-modal="true" data-target="#editMemberModal"></i>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
+            <h3>@member.FirstName @member.LastName</h3>
+
+            @* <span class="role">@member.Role ?? "Ingen roll angiven"</span> *@
+
+            <p class="email">@member.Email</p>
+            <p class="phone">@member.Phone</p>
+
+            <button class="message-btn">Message</button>
+        </div>
+    }
 </div>

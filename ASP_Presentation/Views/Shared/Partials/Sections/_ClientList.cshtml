@@ -1,17 +1,8 @@
 ﻿@model Client
 
-<tr class="card">
-    <td>
-        <div>
-            <div class="client-name">@Model.ClientName</div>
-        </div>
-    </td>
-    <td>
-        <i class="fa-regular fa-ellipsis"
-           data-modal="true"
-           data-target="#editClientModal"
-           data-id="@Model.Id"
-           data-clientname="@Model.ClientName">
-        </i>
-    </td>
-</tr>
+<div class="member-card">
+    <img src="@(string.IsNullOrWhiteSpace(Model.ImageUrl) ? "/Images/Avatars/Avatar1.svg" : Model.ImageUrl)" class="avatar" />
+
+    <h3>@Model.ClientName</h3>
+    <button class="message-btn">Email client</button>
+</div>

@@ -19,7 +19,7 @@ public class Projects
     public int StatusId { get; set; }
 
 
-    public Client? Client { get; set; } = null!;
+    public Client? Client { get; set; }
 
     public Member? Member { get; set; } = null!;
     public Status? Status { get; set; } = null!;

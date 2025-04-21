@@ -1084,3 +1084,126 @@ input[type="checkbox"] {
     .logout-link i {
         font-size: 1rem;
     }
+
+
+.project-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    margin-bottom: 1rem;
+    width: 300px;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.project-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    margin-right: 0.5rem;
+}
+
+.project-name {
+    font-weight: bold;
+}
+
+.project-client {
+    font-size: 0.85rem;
+    color: gray;
+}
+
+.options-button {
+    cursor: pointer;
+    color: #888;
+}
+
+.project-desc {
+    font-size: 0.9rem;
+    color: #444;
+    margin-top: 0.5rem;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.clock-icon {
+    margin-right: 0.3rem;
+}
+
+.member-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 9999px;
+    border: 2px solid white;
+    margin-left: -8px;
+}
+
+
+.member-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.member-card {
+    background-color: #fff;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+}
+
+    .member-card:hover {
+        transform: translateY(-5px);
+    }
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+}
+
+.role {
+    background-color: #f3f4f6;
+    color: #333;
+    font-size: 0.85rem;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.email, .phone {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0.2rem 0;
+}
+
+.message-btn {
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 12px;
+    background-color: #f1f5f9;
+    cursor: pointer;
+    font-weight: 500;
+}

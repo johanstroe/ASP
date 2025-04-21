@@ -21,13 +21,26 @@ public class ClientService(IClientRepository clientRepository) : IClientService
 
     public async Task<ClientResult> CreateClientAsync(AddClientForm form)
     {
-        var entity = new ClientEntity
+        var client = new ClientEntity
         {
-            ClientName = form.ClientName,
-
+            Id = Guid.NewGuid().ToString(),
+            ClientName = form.ClientName
         };
 
-        var result = await _clientRepository.AddAsync(entity);
+        if (form.ClientImage is { Length: > 0 })
+        {
+            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(form.ClientImage.FileName)}";
+            var imagePath = Path.Combine("wwwroot", "Images", "Clients", fileName);
+
+            Directory.CreateDirectory(Path.GetDirectoryName(imagePath)!);
+
+            using var stream = new FileStream(imagePath, FileMode.Create);
+            await form.ClientImage.CopyToAsync(stream);
+
+            client.ImageUrl = $"/Images/Clients/{fileName}";
+        }
+
+        var result = await _clientRepository.AddAsync(client);
 
         return new ClientResult
         {
@@ -36,6 +49,9 @@ public class ClientService(IClientRepository clientRepository) : IClientService
             Error = result.Error
         };
     }
+
+
+
 
 }
 

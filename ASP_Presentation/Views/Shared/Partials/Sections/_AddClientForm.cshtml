@@ -10,7 +10,8 @@
             <button type="button" class="btn-close" data-type="modal" data-target="#addClientModal" data-close="true"></button>
         </div>
 
-        <form class="ajaxForm" novalidate method="post" asp-action="AddClient" asp-controller="Admin">
+        <form class="ajaxForm" novalidate method="post" asp-action="AddClient" asp-controller="Admin" enctype="multipart/form-data">
+
 
             <div class="image-previewer circle ">
                 <img src="" class="image-preview" />

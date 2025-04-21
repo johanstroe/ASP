@@ -103,10 +103,6 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
             entity.Image = "/Images/" + fileName;
         }
 
-        //// 3. Viktigt! Nolla navigation properties så EF Core inte kraschar
-        //entity.Client = null!;
-        //entity.Member = null!;
-        //entity.Status = null!;
 
         // 4. Uppdatera via repository
         var updateResult = await _projectRepository.UpdateAsync(entity);

@@ -1,8 +1,18 @@
 ﻿@model Projects
 
+@{
+    var statusKey = Model.StatusId switch
+    {
+        1 => "ongoing",
+        2 => "notstarted",
+        3 => "completed",
+        _ => "unknown"
+    };
+}
 
     
-<div class="project-card">
+<div class="project-card" data-project-status="@statusKey">
+    
     <div class="card-header">
         <img class="project-image" src="@(string.IsNullOrWhiteSpace(Model.Image) ? "/Images/Projecticon.svg" : Model.Image)" />
         <div>

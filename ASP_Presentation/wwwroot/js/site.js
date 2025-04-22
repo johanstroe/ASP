@@ -2,6 +2,8 @@
 import { setupForm } from './form-handler.js'
 import { setupImage } from './image.js'
 import { setupFormattedDateDisplay } from './calendar.js'
+import { setupStatusFilter } from './status.js';
+
 
 
 
@@ -12,6 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setupForm();
     setupImage();
     setupFormattedDateDisplay('StartDate', 'StartDateFormatted');
+    setupStatusFilter();
+    
 
     const dropdownButtons = document.querySelectorAll('[data-type="dropdown"]');
 
@@ -22,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!target) return;
 
         button.addEventListener('click', (e) => {
-            e.stopPropagation(); // förhindra att den direkt stänger sig själv
+            e.stopPropagation(); 
             target.classList.toggle('show');
         });
 

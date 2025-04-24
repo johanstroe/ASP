@@ -8,16 +8,28 @@
         3 => "completed",
         _ => "unknown"
     };
+
+    var endDate = Model.EndDate ?? DateTime.Now;
+    var weeksLeft = (int)Math.Ceiling((endDate - DateTime.Now).TotalDays / 7);
+
+    string timeStatus = weeksLeft <= 0
+        ? "expired"
+        : weeksLeft < 2
+            ? "urgent"
+            : "on-track";
 }
 
+
+
     
-<div class="project-card" data-project-status="@statusKey">
-    
+<div class="project-card" data-project-status="@statusKey" data-project-enddate="@Model.EndDate?.ToString("yyyy-MM-dd")">
+ 
     <div class="card-header">
         <img class="project-image" src="@(string.IsNullOrWhiteSpace(Model.Image) ? "/Images/Projecticon.svg" : Model.Image)" />
         <div>
             <div class="project-name">@Model.ProjectName</div>
-            <div class="project-client">@Model.ClientId</div>
+            <div class="project-client">@Model.Client?.ClientName</div>
+
         </div>
         <i class="fa-solid fa-ellipsis-vertical options-button"
            data-modal="true"
@@ -30,25 +42,29 @@
            data-budget="@Model.Budget"
            data-clientid="@Model.ClientId"
            data-memberid="@Model.MemberId"
-           data-statusid="@Model.StatusId">
+           data-statusid="@Model.StatusId"
+           data-image="@Model.Image">
         </i>
     </div>
 
-    <div class="project-desc">@Model.Description</div>
+    <div class="project-desc">
+        @(string.IsNullOrWhiteSpace(Model.Description) ? "No description" : Model.Description)
+    </div>
+
 
     <div class="card-footer">
-        <div class="project-time">
-            <span class="clock-icon">⏱</span>
-            
-            @{
-                var endDate = Model.EndDate ?? DateTime.Now;
-                var weeksLeft = (int)Math.Ceiling((endDate - DateTime.Now).TotalDays / 7);
-            }
-            <span>@weeksLeft weeks left</span>
+
+        <div class="project-time @timeStatus">
+            <span class="time-status">
+                <i class="fa-regular fa-clock"></i>
+                @weeksLeft week@(weeksLeft == 1 ? "" : "s") left
+            </span>
         </div>
+
         <div class="members">
             <img src="/Images/Avatars/Avatar1.svg" class="member-avatar" />
             <img src="/Images/Avatars/Avatar2.svg" class="member-avatar" />
         </div>
     </div>
+
 </div>

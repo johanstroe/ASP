@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<Member>
 
+@if (!string.IsNullOrWhiteSpace(Context.Request.Query["query"]))
+{
+    <p>Sökresultat för: <strong>@Context.Request.Query["query"]</strong></p>
+}
 
 @{
     ViewData["Title"] = "Team Members";

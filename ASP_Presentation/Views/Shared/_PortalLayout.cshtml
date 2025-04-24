@@ -16,11 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Alpha Portal</title>
     <script type="importmap"></script>
+    <script src="https://cdn.tiny.cloud/1/axlo9ocimpu6hqxess6wzjvogc90s6lkcxgz5671qfxw5ttd/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://kit.fontawesome.com/a576612222.css" crossorigin="anonymous">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     
+
 </head>
 <body>
 
@@ -32,9 +34,9 @@
             @await Html.PartialAsync("Partials/Components/_NavLinks")
         </div>
         <div class="top">
-        <form method="get" asp-asp-controller="" asp-action="" novalidate class="search-form">
+        <form method="get" asp-asp-controller="Admin" asp-action="Members" novalidate class="search-form">
                 <img src="/Images/Search.svg" />
-        <input type="search" class="form-search-input"  placeholder="Search anything..." />
+        <input type="search" name="query" class="form-search-input"  placeholder="Search anything..." />
         </form>
        
          <button type="button" data-type="dropdown" data-target="#notifications" class="btn-notification">
@@ -66,7 +68,7 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
     <script type="module" src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

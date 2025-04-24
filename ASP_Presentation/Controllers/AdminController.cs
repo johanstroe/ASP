@@ -67,10 +67,26 @@ public class AdminController : Controller
    
     [Route("members")]
     
-    public async Task <IActionResult> Members()
+    public async Task <IActionResult> Members(string query)
     {
-        var members = await _memberService.GetMembersAsync();
-        return View(members.Result);
+        var allMembers = await _memberService.GetMembersAsync();
+
+        var members = allMembers.Result;
+
+        if (!string.IsNullOrWhiteSpace(query))
+        {
+            query = query.ToLower();
+            members = members
+                .Where(m =>
+                 (!string.IsNullOrWhiteSpace(m.FirstName) && m.FirstName.ToLower().Contains(query)) ||
+                (!string.IsNullOrWhiteSpace(m.LastName) && m.LastName.ToLower().Contains(query)) ||
+                (!string.IsNullOrWhiteSpace(m.Email) && m.Email.ToLower().Contains(query))
+            )
+                .ToList();
+
+        }
+
+        return View(members);
     }
 
 

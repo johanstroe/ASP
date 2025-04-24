@@ -37,6 +37,15 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="Description"></label>
+                <div class="field-group">
+                    <textarea asp-for="Description" class="wysiwyg"></textarea>
+                    <span asp-validation-for="Description"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
                 <label asp-for="MemberId"></label>
                 <div class="field-group">
                     <select asp-for="MemberId" asp-items="ViewBag.Members">

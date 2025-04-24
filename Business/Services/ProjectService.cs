@@ -11,10 +11,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
-public class ProjectService(IProjectRepository projectRepository, IStatusService statusService) : IProjectService
+public class ProjectService(IProjectRepository projectRepository, IStatusService statusService, IClientService clientService) : IProjectService
 {
     private readonly IProjectRepository _projectRepository = projectRepository;
     private readonly IStatusService _statusService = statusService;
+    private readonly IClientService _clientService = clientService;
 
 
     public async Task<ProjectResult> CreateProjectAsync(AddProjectForm formData)
@@ -33,6 +34,20 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
         projectEntity.StatusId = status!.Id;
 
+        //  Hantera bilduppladdning
+        if (formData.ProjectImage != null && formData.ProjectImage.Length > 0)
+        {
+            var fileName = Path.GetFileName(formData.ProjectImage.FileName);
+            var filePath = Path.Combine("wwwroot/Images", fileName);
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await formData.ProjectImage.CopyToAsync(stream);
+            }
+
+            projectEntity.Image = "/Images/" + fileName;
+        }
+
 
 
         var result = await _projectRepository.AddAsync(projectEntity);
@@ -47,18 +62,37 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
     public async Task<ProjectResult<IEnumerable<Projects>>> GetProjectsAsync()
     {
-        var response = await _projectRepository.GetAllAsync
-            (orderByDescending: true,
+        var response = await _projectRepository.GetAllAsync(
+            orderByDescending: true,
             sortBy: s => s.Created,
             where: null,
-            include => include.Member,
-            include => include.Status,
-            include => include.Client
-            );
+            p => p.Member,
+            p => p.Status,
+            p => p.Client
+        );
 
+        var clients = (await _clientService.GetClientsAsync()).Result?.ToList() ?? [];
 
-        return new ProjectResult<IEnumerable<Projects>> { Succeeded = true, StatusCode = 201, Result = response.Result };
+        var projects = (response.Result ?? []).Select(p =>
+        {
+            if (string.IsNullOrWhiteSpace(p.ClientId) || p.Client != null)
+                return p;
+
+            p.Client = clients.FirstOrDefault(c => c.Id == p.ClientId)
+                       ?? new Client { Id = p.ClientId, ClientName = "Okänd klient" };
+
+            return p;
+        });
+
+        return new ProjectResult<IEnumerable<Projects>>
+        {
+            Succeeded = true,
+            StatusCode = 201,
+            Result = projects
+        };
     }
+
+
 
     public async Task<ProjectResult<Projects>> GetProjectAsync(string id)
     {

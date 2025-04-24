@@ -913,6 +913,7 @@ input[type="checkbox"] {
 
 /* image-previwer */
 
+
 .image-previewer {
     border: 2px dashed var(--border-color);
     height: 150px;
@@ -967,13 +968,15 @@ input[type="checkbox"] {
 }
 
     .modal .modal-content {
-        max-width: 600px;
+        max-width: 500px; /* gör den smalare */
+        width: 90%; /* responsiv fallback */
         height: auto;
         overflow: hidden;
         background-color: white;
         border-radius: 16px;
         box-shadow: 0 4px 4px 3px rgba(196, 196, 196, 0.1);
         padding: 1.5rem;
+        margin: 2rem auto; /* centrerar och ger lite luft upptill */
     }
 
         .modal .modal-content .modal-header {
@@ -1100,6 +1103,8 @@ input[type="checkbox"] {
     gap: 0.5rem;
 }
 
+   
+
 .card-header {
     display: flex;
     align-items: center;
@@ -1137,7 +1142,7 @@ input[type="checkbox"] {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 0.5rem;
+    margin-top: 6rem;
 }
 
 .clock-icon {
@@ -1208,3 +1213,73 @@ input[type="checkbox"] {
     cursor: pointer;
     font-weight: 500;
 }
+
+.tox-edit-area iframe {
+    cursor: text;
+}
+
+    .tox-edit-area iframe:hover {
+        border: 1px solid var(--gray-300); 
+        box-shadow: 0 0 0 4px white; 
+       
+    }
+
+.status-filter {
+    display: flex;
+    margin-bottom: 1rem;
+    margin-left:3rem;
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    color: #64748b;
+    cursor: pointer;
+    position: relative;
+    font-size: 1rem;
+}
+
+    .filter-btn.active {
+        color: #3b82f6;
+        font-weight: 600;
+    }
+
+        .filter-btn.active::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #3b82f6;
+        }
+
+.time-status {
+    background-color: #f1f5f9; /* ljusgrå bakgrund */
+    color: #1e293b; /* mörk text */
+    padding: 0.7rem 0.75rem;
+    border-radius: 9999px; 
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+}
+
+.project-time.expired .time-status {
+    color: #dc2626; /* röd */
+    font-weight: 600;
+}
+
+.project-time.urgent .time-status {
+    color: #facc15; /* gul */
+    font-weight: 600;
+}
+
+.project-time.on-track .time-status {
+    color: #16a34a; /* grön */
+    font-weight: 600;
+}
+

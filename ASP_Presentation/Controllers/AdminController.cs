@@ -76,7 +76,7 @@ public class AdminController : Controller
         if (!string.IsNullOrWhiteSpace(query))
         {
             query = query.ToLower();
-            members = members
+            members = members?
                 .Where(m =>
                  (!string.IsNullOrWhiteSpace(m.FirstName) && m.FirstName.ToLower().Contains(query)) ||
                 (!string.IsNullOrWhiteSpace(m.LastName) && m.LastName.ToLower().Contains(query)) ||
@@ -252,6 +252,18 @@ public class AdminController : Controller
 
 
         return Ok(new { success = true, redirectUrl = "/projects" });
+    }
+
+    [HttpPost]
+    [Route("projects")]
+    public async Task<IActionResult> DeleteProject([FromBody] string id)
+    {
+        var result = await _projectService.DeleteProjectAsync(id);
+        Console.WriteLine($"Received ID: {id}");
+        if (!result.Succeeded)
+            return BadRequest(result.Error);
+
+               return Ok();
     }
 
 

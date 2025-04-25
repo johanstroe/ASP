@@ -7,14 +7,16 @@ using System.ComponentModel.DataAnnotations;
 namespace Business.Model;
 
 public class EditProjectForm
-
-    
+ 
 {
     public string Id { get; set; } = null!;
 
     [Display(Name = "Project Image", Prompt = "Upload image")]
     [DataType(DataType.Upload)]
     public IFormFile? ProjectImage { get; set; }
+
+    [DataType(DataType.ImageUrl)]
+    public string? ExistingImage { get; set; }
 
     [Display(Name = "Project Name", Prompt = "Enter project name")]
     [DataType(DataType.Text)]

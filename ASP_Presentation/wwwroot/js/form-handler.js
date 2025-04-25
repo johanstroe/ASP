@@ -6,6 +6,11 @@
             e.preventDefault();
 
             clearErrorMessages(form);
+
+            if (typeof tinymce !== "undefined") {
+                tinymce.triggerSave();
+            }
+
             const formData = new FormData(form);
 
             try {
@@ -63,4 +68,31 @@ function addErrorMessage(form, key, errorMessage) {
         span.innerText = errorMessage;
         span.classList.add('field-validation-error');
     }
+}
+
+export function setupProjectActions() {
+    document.addEventListener("click", function (e) {
+        const deleteButton = e.target.closest(".dropdown-item.delete");
+        if (!deleteButton) return;
+
+        const id = deleteButton.dataset.id;
+        if (!id) return;
+
+        if (confirm("Vill du verkligen ta bort projektet?")) {
+            fetch("/projects", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(id)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        deleteButton.closest(".project-card")?.remove();
+                    } else {
+                        alert("Det gick inte att ta bort projektet.");
+                    }
+                });
+        }
+    });
 }

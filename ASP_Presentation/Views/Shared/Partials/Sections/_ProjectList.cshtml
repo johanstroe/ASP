@@ -7,7 +7,11 @@
         2 => "notstarted",
         3 => "completed",
         _ => "unknown"
+
     };
+   
+
+    var dropdownId = $"dropdown-{Model.Id}";
 
     var endDate = Model.EndDate ?? DateTime.Now;
     var weeksLeft = (int)Math.Ceiling((endDate - DateTime.Now).TotalDays / 7);
@@ -19,8 +23,6 @@
             : "on-track";
 }
 
-
-
     
 <div class="project-card" data-project-status="@statusKey" data-project-enddate="@Model.EndDate?.ToString("yyyy-MM-dd")">
  
@@ -29,26 +31,40 @@
         <div>
             <div class="project-name">@Model.ProjectName</div>
             <div class="project-client">@Model.Client?.ClientName</div>
-
+            
         </div>
-        <i class="fa-solid fa-ellipsis-vertical options-button"
-           data-modal="true"
-           data-target="#editProjectModal"
-           data-id="@Model.Id"
-           data-projectname="@Model.ProjectName"
-           data-description="@Model.Description"
-           data-startdate="@Model.StartDate.ToString("yyyy-MM-dd")"
-           data-enddate="@Model.EndDate?.ToString("yyyy-MM-dd")"
-           data-budget="@Model.Budget"
-           data-clientid="@Model.ClientId"
-           data-memberid="@Model.MemberId"
-           data-statusid="@Model.StatusId"
-           data-image="@Model.Image">
-        </i>
+        <div class="dropdown-container">
+            <button class="dropdown-toggle" data-type="dropdown" data-target="#@dropdownId">
+                <i class="fa-solid fa-ellipsis-vertical"></i>
+            </button>
+            <div id="@dropdownId" class="dropdown-menu">
+                <button class="options-button dropdown-item edit" 
+                        data-type="dropdown"
+                        data-modal="true"
+                        data-target="#editProjectModal"
+                        data-id="@Model.Id"
+                        data-projectname="@Model.ProjectName"
+                        data-description="@Model.Description"
+                        data-startdate="@Model.StartDate.ToString("yyyy-MM-dd")"
+                        data-enddate="@Model.EndDate?.ToString("yyyy-MM-dd")"
+                        data-budget="@Model.Budget"
+                        data-clientid="@Model.ClientId"
+                        data-memberid="@Model.MemberId"
+                        data-statusid="@Model.StatusId"
+                        data-image="@Model.Image"
+                        data-existingimage="@Model.Image">
+                    <i class="fa-solid fa-pen"></i> Edit
+                </button>
+                <button class="dropdown-item delete" data-id="@Model.Id">
+                    <i class="fa-solid fa-trash"></i> Delete Project
+                </button>
+            </div>
+        </div>
+
     </div>
 
     <div class="project-desc">
-        @(string.IsNullOrWhiteSpace(Model.Description) ? "No description" : Model.Description)
+        @(string.IsNullOrWhiteSpace(Model.Description) ? "No description" : Html.Raw(Model.Description))
     </div>
 
 
@@ -57,7 +73,14 @@
         <div class="project-time @timeStatus">
             <span class="time-status">
                 <i class="fa-regular fa-clock"></i>
-                @weeksLeft week@(weeksLeft == 1 ? "" : "s") left
+                @if (weeksLeft < 0) 
+                {
+                    @:Expired
+                }
+                else {
+                    @:@weeksLeft week@(weeksLeft == 1 ? "" : "s") left
+
+                }
             </span>
         </div>
 

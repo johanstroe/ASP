@@ -1040,26 +1040,22 @@ input[type="checkbox"] {
         color: white;
     }
 
-/* Själva dropdown-rutan */
+
 .account-dropdown {
     display: none;
     position: absolute;
-    top: 60px; /* justera beroende på headerhöjd */
+    top: 60px; 
     right: 20px;
     background-color: white;
     border-radius: 12px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
-    z-index: 10;
-    width: 200px;
+    padding: 1rem;   
 }
 
-    /* Visa när aktiv */
     .account-dropdown.show {
         display: block;
     }
 
-/* Info-sektionen (avatar + namn) */
 .account-info {
     display: flex;
     align-items: center;
@@ -1068,14 +1064,12 @@ input[type="checkbox"] {
     border-bottom: 1px solid #eee;
     margin-bottom: 0.75rem;
 }
-
     .account-info img {
         width: 40px;
         height: 40px;
         border-radius: 50%;
     }
 
-/* Logout-länk */
 .logout-link {
     display: flex;
     align-items: center;
@@ -1089,7 +1083,6 @@ input[type="checkbox"] {
         font-size: 1rem;
     }
 
-
 .project-card {
     background: white;
     padding: 1rem;
@@ -1102,8 +1095,6 @@ input[type="checkbox"] {
     flex-direction: column;
     gap: 0.5rem;
 }
-
-   
 
 .card-header {
     display: flex;
@@ -1156,7 +1147,6 @@ input[type="checkbox"] {
     border: 2px solid white;
     margin-left: -8px;
 }
-
 
 .member-list {
     display: flex;
@@ -1257,8 +1247,8 @@ input[type="checkbox"] {
         }
 
 .time-status {
-    background-color: #f1f5f9; /* ljusgrå bakgrund */
-    color: #1e293b; /* mörk text */
+    background-color: #f1f5f9; 
+    color: #1e293b; 
     padding: 0.7rem 0.75rem;
     border-radius: 9999px; 
     font-size: 0.875rem;
@@ -1269,17 +1259,76 @@ input[type="checkbox"] {
 }
 
 .project-time.expired .time-status {
-    color: #dc2626; /* röd */
+    color: #dc2626; 
     font-weight: 600;
 }
 
 .project-time.urgent .time-status {
-    color: #facc15; /* gul */
+    color: #facc15; 
     font-weight: 600;
 }
 
 .project-time.on-track .time-status {
-    color: #16a34a; /* grön */
+    color: #16a34a; 
     font-weight: 600;
 }
+
+
+.dropdown-container {
+    position: relative;
+}
+
+.dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    padding: 0.5rem 0;
+    min-width: 180px;
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: all 0.2s ease;
+}
+
+    .dropdown-menu.show {
+        display: flex;
+    }
+
+.dropdown-item {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+    .dropdown-item:hover {
+        background-color: #f5f5f5;
+    }
+
+    .dropdown-item.delete {
+        color: #f43f5e; 
+    }
+
+    .dropdown-item.edit {
+        color: #0f172a; 
+    }
+
+
 

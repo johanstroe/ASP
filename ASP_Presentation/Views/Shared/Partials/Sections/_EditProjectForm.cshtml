@@ -13,10 +13,13 @@
 
             <input asp-for="Id" type="hidden" />
 
-            <div class="image-previewer circle ">
-                <img src="" class="image-preview" />
+            <div class="image-previewer circle">
+                <img src="@(string.IsNullOrWhiteSpace(Model.ExistingImage) ? "/Images/Projecticon.svg" : Model.ExistingImage)" class="image-preview" />
+                <input type="hidden" asp-for="ExistingImage" />
                 <input asp-for="ProjectImage" type="file" accept="image/*" class="hide" />
             </div>
+
+
 
             <div class="form-group">
                 <label asp-for="ProjectName"></label>
@@ -29,7 +32,7 @@
             <div class="form-group">
                 <label asp-for="Description"></label>
                 <div class="field-group">
-                    <textarea asp-for="Description" class="wysiwyg"></textarea>
+                    <textarea id="EditProject_Description" asp-for="Description" class="wysiwyg"></textarea>
                     <span asp-validation-for="Description"></span>
                 </div>
             </div>

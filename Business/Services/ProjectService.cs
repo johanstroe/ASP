@@ -1,6 +1,7 @@
 ﻿using Business.Dtos;
 using Business.Interface;
 using Business.Model;
+using Data.Contexts;
 using Data.Entities;
 using Data.Repositories;
 using Domain.Dtos;
@@ -11,11 +12,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Business.Services;
 
-public class ProjectService(IProjectRepository projectRepository, IStatusService statusService, IClientService clientService) : IProjectService
+public class ProjectService(IProjectRepository projectRepository, IStatusService statusService, IClientService clientService, DataContext context) : IProjectService
 {
     private readonly IProjectRepository _projectRepository = projectRepository;
     private readonly IStatusService _statusService = statusService;
     private readonly IClientService _clientService = clientService;
+    private readonly DataContext _context = context;
 
 
     public async Task<ProjectResult> CreateProjectAsync(AddProjectForm formData)
@@ -123,18 +125,21 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
         // 1. Mappa formuläret direkt till en ProjectEntity
         var entity = formData.MapTo<ProjectEntity>();
 
-        // 2. Hantera eventuell ny bild
+        // 2. Hantera bild
         if (formData.ProjectImage != null && formData.ProjectImage.Length > 0)
         {
             var fileName = Path.GetFileName(formData.ProjectImage.FileName);
             var filePath = Path.Combine("wwwroot/Images", fileName);
-
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 await formData.ProjectImage.CopyToAsync(stream);
             }
 
             entity.Image = "/Images/" + fileName;
+        }
+        else
+        {
+            entity.Image = formData.ExistingImage;
         }
 
 
@@ -146,6 +151,27 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
             ? new ProjectResult { Succeeded = true, StatusCode = 200 }
             : new ProjectResult { Succeeded = false, StatusCode = updateResult.StatusCode, Error = updateResult.Error };
     }
+
+    public async Task<ProjectResult> DeleteProjectAsync(string id)
+    {
+        
+        var entity = await _context.Projects!.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (entity == null)
+            return new ProjectResult { Succeeded = false, StatusCode = 404, Error = "Project not found" };
+
+        var result = await _projectRepository.DeleteAsync(entity);
+
+        return new ProjectResult
+        {
+            Succeeded = result.Succeeded,
+            StatusCode = result.StatusCode,
+            Error = result.Error
+        };
+    }
+
+
+
 
 }
 

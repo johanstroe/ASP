@@ -52,7 +52,7 @@
             <div id="account" class="account-dropdown">
                 <div class="account-info">
                     <img src="/Images/Avatars/Avatar2.svg" alt="Avatar" />
-                    <span>@(ViewBag.FullName ?? User.Identity?.Name)</span>
+                    <span>@(ViewBag.FullName ?? @email)</span>
                 </div>
                 <a href="/auth/logout" class="logout-link">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
@@ -68,8 +68,8 @@
         </div>
     </div>
 
-    
     <script type="module" src="~/js/site.js" asp-append-version="true"></script>
+    @await Html.PartialAsync("Partials/Sections/_DeleteModal")
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

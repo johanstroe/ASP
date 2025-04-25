@@ -125,8 +125,8 @@ public class AuthController(IAuthService authService, SignInManager<MemberEntity
 
             try
             {
-                string firstname = info.Principal?.FindFirstValue(ClaimTypes.GivenName)!;
-                string lastname = info.Principal?.FindFirstValue(ClaimTypes.Surname)!;
+                firstName = info.Principal?.FindFirstValue(ClaimTypes.GivenName) ?? info.Principal?.FindFirstValue(ClaimTypes.Email)!;
+                lastName = info.Principal?.FindFirstValue(ClaimTypes.Surname) ?? "";
             }
             catch {}
 

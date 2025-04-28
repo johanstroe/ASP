@@ -69,7 +69,13 @@ export function setPreviewImageFromDataAttribute(editButton, modalSelector = "#e
     const previewer = modal.querySelector('.image-previewer');
     const imageSrc = editButton.dataset.image;
 
-    if (imagePreview && previewer && imageSrc) {
-        processImageFromUrl(imageSrc, imagePreview, previewer);
+    if (imagePreview && previewer)
+    {
+        if (!imageSrc || imageSrc.includes("/Images/Projecticon.svg")) {
+            imagePreview.src = "/Images/Projecticon.svg";
+            previewer.classList.remove("selected");
+        } else {
+            processImageFromUrl(imageSrc, imagePreview, previewer)
+        }
     }
 }

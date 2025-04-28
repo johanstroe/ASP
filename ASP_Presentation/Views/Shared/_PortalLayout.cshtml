@@ -25,7 +25,7 @@
 
 </head>
 <body>
-
+    
     <div class="portal">
         <div class="logotype">
             @await Html.PartialAsync("Partials/Components/_AlphaLogoType")
@@ -67,6 +67,7 @@
             @RenderBody()
         </div>
     </div>
+    
 
     <script type="module" src="~/js/site.js" asp-append-version="true"></script>
     @await Html.PartialAsync("Partials/Sections/_DeleteModal")

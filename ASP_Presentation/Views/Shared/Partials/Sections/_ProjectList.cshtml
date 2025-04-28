@@ -14,11 +14,31 @@
     var dropdownId = $"dropdown-{Model.Id}";
 
     var endDate = Model.EndDate ?? DateTime.Now;
-    var weeksLeft = (int)Math.Ceiling((endDate - DateTime.Now).TotalDays / 7);
+    var totalDaysLeft = (int)Math.Ceiling((endDate - DateTime.Now).TotalDays);
+    string timeLeftDisplay;
 
-    string timeStatus = weeksLeft <= 0
+    if (totalDaysLeft < 0)
+    {
+        timeLeftDisplay = "Expired";
+    }
+    else if (totalDaysLeft < 7)
+    {
+        timeLeftDisplay = $"{totalDaysLeft} day{(totalDaysLeft == 1 ? "" : "s")} left";
+    }
+    else if (totalDaysLeft < 30)
+    {
+        var weeksLeft = (int)Math.Ceiling(totalDaysLeft / 7.0);
+        timeLeftDisplay = $"{weeksLeft} week{(weeksLeft == 1 ? "" : "s")} left";
+    }
+    else
+    {
+        var monthsLeft = (int)Math.Ceiling(totalDaysLeft / 30.0);
+        timeLeftDisplay = $"{monthsLeft} month{(monthsLeft == 1 ? "" : "s")} left";
+    }
+
+    string timeStatus = totalDaysLeft <= 0
         ? "expired"
-        : weeksLeft < 2
+        : totalDaysLeft < 14 // du kan justera detta om du vill
             ? "urgent"
             : "on-track";
 }
@@ -28,7 +48,8 @@
  
     <div class="card-header">
         <img class="project-image" src="@(string.IsNullOrWhiteSpace(Model.Image) ? "/Images/Projecticon.svg" : Model.Image)" />
-        <div>
+        
+        <div class="text-container">
             <div class="project-name">@Model.ProjectName</div>
             <div class="project-client">@Model.Client?.ClientName</div>
             
@@ -37,6 +58,7 @@
             <button class="dropdown-toggle" data-type="dropdown" data-target="#@dropdownId">
                 <i class="fa-solid fa-ellipsis-vertical"></i>
             </button>
+        
             <div id="@dropdownId" class="dropdown-menu">
                 <button class="options-button dropdown-item edit" 
                         data-type="dropdown"
@@ -73,14 +95,7 @@
         <div class="project-time @timeStatus">
             <span class="time-status">
                 <i class="fa-regular fa-clock"></i>
-                @if (weeksLeft < 0) 
-                {
-                    @:Expired
-                }
-                else {
-                    @:@weeksLeft week@(weeksLeft == 1 ? "" : "s") left
-
-                }
+                <span>@timeLeftDisplay</span>
             </span>
         </div>
 

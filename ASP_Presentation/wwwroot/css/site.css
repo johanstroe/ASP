@@ -337,6 +337,13 @@ label {
     opacity: 0.9;
 }
 
+.portal-wrapper {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
 
 .portal {
     display: grid;
@@ -705,18 +712,19 @@ form .input-validation-error {
 form .field-validation-error {
     position: absolute;
     z-index: 1;
-    right: 0.2rem;
-    top: 3px;
+    right: 2rem;
+    top: 1px;
     font-size: 0.8em;
     background-color: var(--error);
     color: var(--error-text-color);
-    padding: 0.4rem 1rem;
+    padding: 0.7em 1rem;
     border-radius: 14px;
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
 }
+
 
 .form-search-input {
     position: relative;
@@ -937,12 +945,15 @@ input[type="checkbox"] {
         border-radius: 50%;
         position: relative;
         bottom: 0;
+        
     }
 
     .image-previewer.selected::after {
         content: '\f044';
         position: absolute;
         bottom: 5px;
+        display:none;
+        
     }
 
 
@@ -968,15 +979,15 @@ input[type="checkbox"] {
 }
 
     .modal .modal-content {
-        max-width: 500px; /* gör den smalare */
-        width: 90%; /* responsiv fallback */
+        max-width: 500px;
+        width: 90%;
         height: auto;
-        overflow: hidden;
+        overflow: auto;
         background-color: white;
         border-radius: 16px;
         box-shadow: 0 4px 4px 3px rgba(196, 196, 196, 0.1);
         padding: 1.5rem;
-        margin: 2rem auto; /* centrerar och ger lite luft upptill */
+        margin: 2rem auto;
     }
 
         .modal .modal-content .modal-header {
@@ -994,15 +1005,20 @@ input[type="checkbox"] {
 
 #addProjectModal .modal-content {
     width: 550px;
-    max-height:100vh;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 #editClientModal .modal-content {
     width: 550px;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 #editProjectModal .modal-content {
-    width:550px;
+    width: 550px;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 #team-members {
@@ -1090,16 +1106,31 @@ input[type="checkbox"] {
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
     margin-bottom: 1rem;
     width: 300px;
+    height: 300px;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position:relative;
+
 }
+
+    .project-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
 
 .card-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap:0.5rem;
+    position:relative;
+}
+
+.text-container {
+    display: flex;
+    flex-direction:column;
 }
 
 .project-image {
@@ -1111,11 +1142,12 @@ input[type="checkbox"] {
 
 .project-name {
     font-weight: bold;
+    font-size:1.1rem;
 }
 
 .project-client {
-    font-size: 0.85rem;
-    color: gray;
+    font-size: 0.9rem;
+    color: #7d7d7d;
 }
 
 .options-button {
@@ -1125,8 +1157,8 @@ input[type="checkbox"] {
 
 .project-desc {
     font-size: 0.9rem;
-    color: #444;
-    margin-top: 0.5rem;
+    color: #555;
+    flex-grow:1;
 }
 
 .card-footer {
@@ -1219,6 +1251,7 @@ input[type="checkbox"] {
     margin-bottom: 1rem;
     margin-left:3rem;
 }
+   
 
 .filter-btn {
     background: none;
@@ -1276,6 +1309,8 @@ input[type="checkbox"] {
 
 .dropdown-container {
     position: relative;
+    margin-left:auto;
+   
 }
 
 .dropdown-toggle {

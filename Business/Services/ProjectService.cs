@@ -23,7 +23,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
     public async Task<ProjectResult> CreateProjectAsync(AddProjectForm formData)
     {
         formData.MemberId = "85f20754-0b98-4aaf-82f1-b6ddc2f00c16";
-        formData.ClientId = "1";
+        
 
         if (formData == null)
             return new ProjectResult { Succeeded = false, StatusCode = 400, Error = "Not all required fields are supplied" };

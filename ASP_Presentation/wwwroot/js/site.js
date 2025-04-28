@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (editorInstance) {
                 editorInstance.setContent(description || "");
             } else {
-                console.warn("TinyMCE-editorn är inte laddad ännu.");
+                console.warn("Error");
             }
         });
     });

@@ -29,13 +29,14 @@ export function setupStatusFilter() {
 
                 if (selected === "all") {
                     show = true;
-                } else if (selected === "expired") {
+                }
+                else if (selected === "expired") {
                     show = endDate && endDate < now && status !== "completed";
                 } else {
                     show = status === selected;
                 }
 
-                card.style.display = show ? "block" : "none";
+                card.style.display = show ? "flex" : "none";
             });
         });
     });

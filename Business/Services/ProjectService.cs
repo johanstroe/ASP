@@ -22,8 +22,13 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
     public async Task<ProjectResult> CreateProjectAsync(AddProjectForm formData)
     {
-        formData.MemberId = "85f20754-0b98-4aaf-82f1-b6ddc2f00c16";
-        
+        var member = await _context.Users.FirstOrDefaultAsync(u => u.Id == formData.MemberId);
+        if (member == null)
+        {
+            return new ProjectResult { Succeeded = false, StatusCode = 400, Error = "Member does not exist" };
+        }
+
+
 
         if (formData == null)
             return new ProjectResult { Succeeded = false, StatusCode = 400, Error = "Not all required fields are supplied" };
@@ -154,7 +159,7 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
     public async Task<ProjectResult> DeleteProjectAsync(string id)
     {
-        
+
         var entity = await _context.Projects!.FirstOrDefaultAsync(x => x.Id == id);
 
         if (entity == null)
@@ -174,4 +179,3 @@ public class ProjectService(IProjectRepository projectRepository, IStatusService
 
 
 }
-

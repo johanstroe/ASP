@@ -9,7 +9,7 @@
         _ => "unknown"
 
     };
-   
+
 
     var dropdownId = $"dropdown-{Model.Id}";
 
@@ -20,6 +20,9 @@
     if (totalDaysLeft < 0)
     {
         timeLeftDisplay = "Expired";
+    }
+    else if (totalDaysLeft <= 1) {
+        timeLeftDisplay = "Last day";
     }
     else if (totalDaysLeft < 7)
     {

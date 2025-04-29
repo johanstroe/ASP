@@ -8,14 +8,14 @@ public class ProjectEntity
     [Key]
     public string Id { get; set; } = Guid.NewGuid().ToString();
 
-    public string? Image {  get; set; }
+    public string? Image { get; set; }
     public string ProjectName { get; set; } = null!;
 
     public string? Description { get; set; }
 
-    [Column(TypeName ="date")]
+    [Column(TypeName = "date")]
     public DateTime StartDate { get; set; }
-    
+
     [Column(TypeName = "date")]
     public DateTime? EndDate { get; set; }
     public decimal Budget { get; set; }

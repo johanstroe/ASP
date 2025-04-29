@@ -85,7 +85,7 @@ public class MemberService(IMemberRepository memberRepository, UserManager<Membe
             };
 
 
-            
+
             if (formData.BirthYear.HasValue && formData.BirthMonth.HasValue && formData.BirthDay.HasValue)
             {
                 memberEntity.DateOfBirth = new DateOnly(

@@ -25,8 +25,12 @@ public class AddMemberForm
     [DataType(DataType.EmailAddress)]
     [Required(ErrorMessage = "Required")]
     public string Email { get; set; } = null!;
-
-
+    
+    [Display(Name = "Password")]
+    [DataType(DataType.Password)]
+    [Required(ErrorMessage = "Password is required")]
+    [StringLength(100, MinimumLength = 6, ErrorMessage = "Password must be at least 6 characters")]
+    public string Password { get; set; } = null!;
     [Display(Name = "Address", Prompt = "Enter your address")]
     [DataType(DataType.Text)]
     public string? Address { get; set; }

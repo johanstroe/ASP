@@ -41,8 +41,6 @@ public class AddProjectForm
     public decimal Budget { get; set; }
 
     public string StatusId { get; set; } = null!;
-
-    //public List<Status> Statuses { get; set; } = [];
     
     [Display(Name = "Member Name", Prompt = "Enter member name")]
     [DataType(DataType.Text)]

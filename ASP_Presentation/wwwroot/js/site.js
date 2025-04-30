@@ -4,6 +4,7 @@ import { setupImage, setPreviewImageFromDataAttribute, processImageFromUrl } fro
 import { setupFormattedDateDisplay } from './calendar.js'
 import { setupStatusFilter } from './status.js';
 import { setupWysiwyg } from './setupWysiwyg.js'
+import { setupDarkMode } from './darkmode.js'
 
 
 
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupStatusFilter();
     setupWysiwyg();
     setupProjectActions();
+    setupDarkMode();
 
     // Visa befintlig fil i editproject
     document.querySelectorAll(".options-button").forEach(editButton => {

@@ -10,7 +10,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,6 +54,19 @@
                     <img src="/Images/Avatars/Avatar2.svg" alt="Avatar" />
                     <span>@(ViewBag.FullName ?? @email)</span>
                 </div>
+
+                <div class="theme-toggle">
+                    <label class="theme-switch">
+                        <span class="theme-label">
+                            <i class="fa-solid fa-gear"></i>
+                            Dark Mode
+                        </span>
+                        <input type="checkbox" id="darkModeToggle" />
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+
                 <a href="/auth/logout" class="logout-link">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     Logout
